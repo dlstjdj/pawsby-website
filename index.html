@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pawsby — Your AI Desktop Companion</title>
+<meta name="description" content="A tiny cat that lives on your screen, chats with AI, reminds you of meetings, and keeps you company while you work.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&family=DM+Serif+Display&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --purple: #534AB7;
+  --purple-light: #EEEDFE;
+  --purple-mid: #AFA9EC;
+  --purple-dark: #3C3489;
+  --pink: #D4537E;
+  --text: #1a1a2e;
+  --text-muted: #6b6b8a;
+  --text-light: #9999b5;
+  --bg: #ffffff;
+  --bg-secondary: #f7f7fc;
+  --border: rgba(83, 74, 183, 0.12);
+  --radius: 12px;
+  --radius-lg: 20px;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* NAV */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-logo {
+  font-family: 'DM Serif Display', serif;
+  font-size: 22px;
+  color: var(--purple);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+.nav-links a {
+  font-size: 14px;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--purple); }
+.nav-cta {
+  background: var(--purple);
+  color: white;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 100px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  transition: opacity 0.2s;
+  text-decoration: none;
+}
+.nav-cta:hover { opacity: 0.88; }
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 8rem 2rem 4rem;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -200px; left: 50%;
+  transform: translateX(-50%);
+  width: 800px; height: 800px;
+  background: radial-gradient(circle, rgba(83,74,183,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--purple-light);
+  color: var(--purple-dark);
+  font-size: 13px;
+  font-weight: 500;
+  padding: 6px 16px;
+  border-radius: 100px;
+  margin-bottom: 2rem;
+  animation: fadeUp 0.6s ease both;
+}
+.hero h1 {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(42px, 7vw, 72px);
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+  animation: fadeUp 0.6s ease 0.1s both;
+}
+.hero h1 em {
+  font-style: normal;
+  color: var(--purple);
+}
+.hero-desc {
+  font-size: 18px;
+  color: var(--text-muted);
+  max-width: 500px;
+  margin: 0 auto 2.5rem;
+  animation: fadeUp 0.6s ease 0.2s both;
+}
+.email-row {
+  display: flex;
+  gap: 8px;
+  max-width: 420px;
+  width: 100%;
+  margin: 0 auto 1rem;
+  animation: fadeUp 0.6s ease 0.3s both;
+}
+.email-row input {
+  flex: 1;
+  padding: 12px 18px;
+  border: 1.5px solid var(--border);
+  border-radius: 100px;
+  font-size: 15px;
+  font-family: 'DM Sans', sans-serif;
+  outline: none;
+  transition: border-color 0.2s;
+  color: var(--text);
+  background: var(--bg);
+}
+.email-row input:focus { border-color: var(--purple); }
+.email-row input::placeholder { color: var(--text-light); }
+.btn-primary {
+  background: var(--purple);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 100px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  white-space: nowrap;
+  transition: opacity 0.2s, transform 0.15s;
+}
+.btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
+.btn-primary:active { transform: translateY(0); }
+.hero-platforms {
+  font-size: 13px;
+  color: var(--text-light);
+  animation: fadeUp 0.6s ease 0.35s both;
+}
+.hero-platforms i { vertical-align: -2px; margin: 0 4px; }
+
+/* CAT DEMO */
+.cat-demo {
+  margin: 3rem auto 0;
+  animation: fadeUp 0.8s ease 0.4s both;
+}
+.demo-window {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  max-width: 320px;
+  margin: 0 auto;
+  box-shadow: 0 20px 60px rgba(83,74,183,0.1);
+}
+.window-dots {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 1.5rem;
+}
+.dot { width: 10px; height: 10px; border-radius: 50%; }
+.cat-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+}
+.speech-bubble {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 8px 14px;
+  font-size: 13px;
+  color: var(--text);
+  position: relative;
+  align-self: flex-start;
+  margin-left: 20px;
+  animation: bob 3s ease-in-out infinite;
+}
+.speech-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: -7px;
+  left: 20px;
+  width: 12px; height: 12px;
+  background: white;
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  transform: rotate(45deg);
+}
+.demo-msg {
+  font-size: 12px;
+  color: var(--text-muted);
+  text-align: center;
+  padding: 8px 0;
+}
+
+/* FEATURES */
+.features {
+  padding: 6rem 2rem;
+  max-width: 860px;
+  margin: 0 auto;
+}
+.section-label {
+  text-align: center;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--purple);
+  margin-bottom: 1rem;
+}
+.section-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(28px, 4vw, 40px);
+  text-align: center;
+  margin-bottom: 3rem;
+  line-height: 1.2;
+}
+.feat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+}
+.feat-card {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.feat-card:hover {
+  border-color: var(--purple-mid);
+  transform: translateY(-2px);
+}
+.feat-icon {
+  width: 44px; height: 44px;
+  background: var(--purple-light);
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  font-size: 22px;
+  color: var(--purple);
+}
+.feat-card h3 {
+  font-size: 15px;
+  font-weight: 500;
+  margin-bottom: 6px;
+}
+.feat-card p {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.65;
+}
+
+/* PLANS */
+.plans {
+  padding: 6rem 2rem;
+  background: var(--bg-secondary);
+}
+.plans-inner { max-width: 860px; margin: 0 auto; }
+.plan-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  margin-top: 3rem;
+}
+.plan-card {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  transition: transform 0.2s;
+}
+.plan-card:hover { transform: translateY(-2px); }
+.plan-card.featured { border: 2px solid var(--purple); }
+.plan-badge {
+  display: inline-block;
+  background: var(--purple-light);
+  color: var(--purple-dark);
+  font-size: 11px;
+  font-weight: 500;
+  padding: 3px 10px;
+  border-radius: 100px;
+  margin-bottom: 12px;
+}
+.plan-name {
+  font-family: 'DM Serif Display', serif;
+  font-size: 22px;
+  margin-bottom: 4px;
+}
+.plan-price {
+  font-size: 32px;
+  font-weight: 500;
+  color: var(--purple);
+  margin-bottom: 4px;
+  line-height: 1;
+}
+.plan-price .period {
+  font-size: 15px;
+  color: var(--text-muted);
+  font-weight: 400;
+}
+.plan-tagline {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 1.2rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.plan-features {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.plan-features li {
+  font-size: 13px;
+  color: var(--text-muted);
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+.plan-features li i {
+  color: var(--purple);
+  font-size: 16px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.plan-tba {
+  font-size: 26px;
+  font-weight: 500;
+  color: var(--text-light);
+  margin-bottom: 4px;
+}
+
+/* FOOTER */
+footer {
+  text-align: center;
+  padding: 3rem 2rem;
+  border-top: 1px solid var(--border);
+}
+.footer-logo {
+  font-family: 'DM Serif Display', serif;
+  font-size: 20px;
+  color: var(--purple);
+  margin-bottom: 8px;
+}
+footer p {
+  font-size: 13px;
+  color: var(--text-light);
+}
+
+/* ANIMATIONS */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+/* TOAST */
+.toast {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: var(--text);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 100px;
+  font-size: 14px;
+  opacity: 0;
+  transition: opacity 0.3s, transform 0.3s;
+  pointer-events: none;
+  z-index: 999;
+}
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* MOBILE */
+@media (max-width: 600px) {
+  nav { padding: 1rem; }
+  .nav-links { display: none; }
+  .email-row { flex-direction: column; }
+  .email-row input, .btn-primary { width: 100%; border-radius: 12px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+      <ellipse cx="12" cy="14" rx="7" ry="6" fill="#534AB7"/>
+      <ellipse cx="12" cy="10" rx="6" ry="5.5" fill="#534AB7"/>
+      <polygon points="7,7 5,2 9.5,6" fill="#534AB7"/>
+      <polygon points="17,7 19,2 14.5,6" fill="#534AB7"/>
+      <ellipse cx="12" cy="10" rx="4" ry="3.5" fill="#EEEDFE"/>
+      <circle cx="9.5" cy="9" r="1.2" fill="#3C3489"/>
+      <circle cx="14.5" cy="9" r="1.2" fill="#3C3489"/>
+      <ellipse cx="12" cy="11.5" rx="1" ry="0.7" fill="#D4537E"/>
+    </svg>
+    Pawsby
+  </a>
+  <ul class="nav-links">
+    <li><a href="#features">Features</a></li>
+    <li><a href="#plans">Pricing</a></li>
+  </ul>
+  <a href="#notify" class="nav-cta">Get early access</a>
+</nav>
+
+<section class="hero" id="top">
+  <div class="hero-badge">
+    <i class="ti ti-sparkles" aria-hidden="true"></i>
+    Now in development
+  </div>
+  <h1>Meet <em>Pawsby</em>,<br>your tiny desk companion</h1>
+  <p class="hero-desc">A cat that lives on your screen, chats with AI, reminds you of meetings, and keeps you company while you work.</p>
+  <div class="email-row" id="notify">
+    <input type="email" id="emailInput" placeholder="your@email.com" />
+    <button class="btn-primary" onclick="handleNotify()">Notify me</button>
+  </div>
+  <p class="hero-platforms">
+    <i class="ti ti-brand-windows" aria-hidden="true"></i> Windows
+    &nbsp;&amp;&nbsp;
+    <i class="ti ti-brand-apple" aria-hidden="true"></i> macOS
+  </p>
+
+  <div class="cat-demo">
+    <div class="demo-window">
+      <div class="window-dots">
+        <div class="dot" style="background:#FF5F57"></div>
+        <div class="dot" style="background:#FFBD2E"></div>
+        <div class="dot" style="background:#28CA41"></div>
+      </div>
+      <div class="cat-area">
+        <div class="speech-bubble">You have a meeting in 10 min ☕</div>
+        <svg width="110" height="110" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <ellipse cx="60" cy="75" rx="32" ry="30" fill="#AFA9EC"/>
+          <ellipse cx="60" cy="50" rx="26" ry="24" fill="#AFA9EC"/>
+          <polygon points="36,32 28,12 46,26" fill="#AFA9EC"/>
+          <polygon points="84,32 92,12 74,26" fill="#AFA9EC"/>
+          <ellipse cx="60" cy="50" rx="18" ry="16" fill="#EEEDFE"/>
+          <circle cx="50" cy="47" r="4" fill="#3C3489"/>
+          <circle cx="70" cy="47" r="4" fill="#3C3489"/>
+          <circle cx="51" cy="46" r="1.5" fill="white"/>
+          <circle cx="71" cy="46" r="1.5" fill="white"/>
+          <ellipse cx="60" cy="56" rx="3" ry="2" fill="#D4537E"/>
+          <path d="M55 60 Q60 64 65 60" stroke="#3C3489" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          <line x1="42" y1="54" x2="34" y2="52" stroke="#3C3489" stroke-width="1" stroke-linecap="round"/>
+          <line x1="42" y1="57" x2="34" y2="57" stroke="#3C3489" stroke-width="1" stroke-linecap="round"/>
+          <line x1="78" y1="54" x2="86" y2="52" stroke="#3C3489" stroke-width="1" stroke-linecap="round"/>
+          <line x1="78" y1="57" x2="86" y2="57" stroke="#3C3489" stroke-width="1" stroke-linecap="round"/>
+          <ellipse cx="60" cy="95" rx="12" ry="6" fill="#9F99DD"/>
+          <path d="M48 90 Q44 100 40 105" stroke="#AFA9EC" stroke-width="6" stroke-linecap="round" fill="none"/>
+          <path d="M72 90 Q76 100 80 105" stroke="#AFA9EC" stroke-width="6" stroke-linecap="round" fill="none"/>
+        </svg>
+        <p class="demo-msg">Pawsby lives right on your desktop</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="features" id="features">
+  <p class="section-label">Features</p>
+  <h2 class="section-title">Everything you need in a desk companion</h2>
+  <div class="feat-grid">
+    <div class="feat-card">
+      <div class="feat-icon"><i class="ti ti-message-circle" aria-hidden="true"></i></div>
+      <h3>AI chat</h3>
+      <p>Talk to your pet anytime. Powered by GPT-4o mini or Claude Haiku depending on your plan.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon"><i class="ti ti-calendar-event" aria-hidden="true"></i></div>
+      <h3>Calendar alerts</h3>
+      <p>Connect Google or Outlook. Pawsby reminds you of meetings before they start — and can schedule them too.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon"><i class="ti ti-device-desktop" aria-hidden="true"></i></div>
+      <h3>Always on screen</h3>
+      <p>Lives on your desktop, stays out of the way. Walks, sleeps, reacts, and keeps you company.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon"><i class="ti ti-lock" aria-hidden="true"></i></div>
+      <h3>Private by default</h3>
+      <p>Chat history stays on your device. Sync is opt-in and end-to-end encrypted — we can't read it.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon"><i class="ti ti-palette" aria-hidden="true"></i></div>
+      <h3>Custom pet</h3>
+      <p>Upload a photo of your real cat and we'll turn it into your personal AI companion.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon"><i class="ti ti-refresh" aria-hidden="true"></i></div>
+      <h3>Sync everywhere</h3>
+      <p>Your chat history follows you across all your devices, seamlessly.</p>
+    </div>
+  </div>
+</section>
+
+<section class="plans" id="plans">
+  <div class="plans-inner">
+    <p class="section-label">Pricing</p>
+    <h2 class="section-title">Simple, honest pricing</h2>
+    <div class="plan-grid">
+      <div class="plan-card">
+        <div class="plan-name">Free</div>
+        <div class="plan-price">$0</div>
+        <p class="plan-tagline">Silent companion</p>
+        <ul class="plan-features">
+          <li><i class="ti ti-check" aria-hidden="true"></i>Pet walks &amp; reacts</li>
+          <li><i class="ti ti-check" aria-hidden="true"></i>Calendar alerts</li>
+          <li><i class="ti ti-check" aria-hidden="true"></i>Pet commands</li>
+          <li><i class="ti ti-check" aria-hidden="true"></i>3-day AI trial</li>
+        </ul>
+      </div>
+      <div class="plan-card featured">
+        <div class="plan-badge">Most popular</div>
+        <div class="plan-name">Kitten</div>
+        <div class="plan-price">$5<span class="period">/mo</span></div>
+        <p class="plan-tagline">AI chat unlocked</p>
+        <ul class="plan-features">
+          <li><i class="ti ti-check" aria-hidden="true"></i>50 AI chats/day</li>
+          <li><i class="ti ti-check" aria-hidden="true"></i>Web search</li>
+          <li><i class="ti ti-check" aria-hidden="true"></i>Sync all devices</li>
+          <li><i class="ti ti-check" aria-hidden="true"></i>1 custom pet</li>
+          <li><i class="ti ti-check" aria-hidden="true"></i>7-day free trial</li>
+        </ul>
+      </div>
+      <div class="plan-card">
+        <div class="plan-name">Cat</div>
+        <div class="plan-price">$10<span class="period">/mo</span></div>
+        <p class="plan-tagline">Unlimited everything</p>
+        <ul class="plan-features">
+          <li><i class="ti ti-check" aria-hidden="true"></i>Unlimited AI chats</li>
+          <li><i class="ti ti-check" aria-hidden="true"></i>Claude Haiku model</li>
+          <li><i class="ti ti-check" aria-hidden="true"></i>Calendar scheduling</li>
+          <li><i class="ti ti-check" aria-hidden="true"></i>3 custom pets</li>
+          <li><i class="ti ti-check" aria-hidden="true"></i>7-day free trial</li>
+        </ul>
+      </div>
+      <div class="plan-card">
+        <div class="plan-name">Panther</div>
+        <div class="plan-tba">TBA</div>
+        <p class="plan-tagline">Coming soon</p>
+        <ul class="plan-features">
+          <li><i class="ti ti-check" aria-hidden="true"></i>Premium AI model</li>
+          <li><i class="ti ti-check" aria-hidden="true"></i>Voice input</li>
+          <li><i class="ti ti-check" aria-hidden="true"></i>Screen awareness</li>
+          <li><i class="ti ti-check" aria-hidden="true"></i>And more...</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">Pawsby</div>
+  <p>Windows &amp; macOS &nbsp;·&nbsp; © 2026 Pawsby &nbsp;·&nbsp; <a href="mailto:hello@pawsby.app" style="color:var(--purple);text-decoration:none;">hello@pawsby.app</a></p>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+function handleNotify() {
+  const input = document.getElementById('emailInput');
+  const val = input.value.trim();
+  if (!val || !val.includes('@')) {
+    input.style.borderColor = '#E24B4A';
+    input.focus();
+    return;
+  }
+  input.style.borderColor = '';
+  input.value = '';
+  showToast('You\'re on the list! We\'ll let you know when Pawsby launches 🐾');
+}
+
+document.getElementById('emailInput').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') handleNotify();
+});
+</script>
+</body>
+</html>
