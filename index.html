@@ -176,6 +176,7 @@ nav {
 }
 .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
 .btn-primary:active { transform: translateY(0); }
+.btn-primary:disabled { opacity: 0.6; cursor: default; transform: none; }
 .hero-platforms {
   font-size: 13px;
   color: var(--text-light);
@@ -397,6 +398,16 @@ footer p {
   font-size: 13px;
   color: var(--text-light);
 }
+.footer-links {
+  margin-top: 10px;
+  font-size: 13px;
+}
+.footer-links a {
+  color: var(--text-light);
+  text-decoration: none;
+}
+.footer-links a:hover { color: var(--purple); text-decoration: underline; }
+.footer-links .sep { color: var(--border); margin: 0 8px; }
 
 /* ANIMATIONS */
 @keyframes fadeUp {
@@ -609,11 +620,22 @@ footer p {
 <footer>
   <div class="footer-logo">Pawsby</div>
   <p>Windows &amp; macOS &nbsp;·&nbsp; © 2026 Pawsby &nbsp;·&nbsp; <a href="mailto:hello@pawsby.app" style="color:var(--purple);text-decoration:none;">hello@pawsby.app</a></p>
+  <p class="footer-links">
+    <a href="/privacy">Privacy Policy</a>
+    <span class="sep">·</span>
+    <a href="/terms">Terms of Service</a>
+    <span class="sep">·</span>
+    <a href="/delete-account">Delete Account</a>
+  </p>
 </footer>
 
 <div class="toast" id="toast"></div>
 
 <script>
+// Fill in your Supabase anon key (safe to expose client-side).
+const SUPABASE_URL = 'https://zptbmngvcesbqfravbdz.supabase.co';
+const SUPABASE_ANON_KEY = 'YOUR_ANON_KEY_HERE'; // Settings → API in Supabase dashboard
+
 function showToast(msg) {
   const t = document.getElementById('toast');
   t.textContent = msg;
@@ -621,17 +643,41 @@ function showToast(msg) {
   setTimeout(() => t.classList.remove('show'), 3000);
 }
 
-function handleNotify() {
+async function handleNotify() {
   const input = document.getElementById('emailInput');
+  const btn = document.querySelector('.email-row .btn-primary');
   const val = input.value.trim();
-  if (!val || !val.includes('@')) {
+
+  if (!val || !val.includes('@') || !val.includes('.')) {
     input.style.borderColor = '#E24B4A';
     input.focus();
     return;
   }
   input.style.borderColor = '';
-  input.value = '';
-  showToast('You\'re on the list! We\'ll let you know when Pawsby launches 🐾');
+
+  const originalLabel = btn.textContent;
+  btn.disabled = true;
+  btn.textContent = 'Adding…';
+
+  try {
+    await fetch(`${SUPABASE_URL}/functions/v1/waitlist-signup`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+      },
+      body: JSON.stringify({ email: val }),
+    });
+    // waitlist-signup is fail-open by design — always show success to the user.
+    input.value = '';
+    showToast('You\'re on the list! We\'ll let you know when Pawsby launches 🐾');
+  } catch (e) {
+    console.error('[waitlist] request failed:', e);
+    showToast('Something went wrong. Please try again.');
+  } finally {
+    btn.disabled = false;
+    btn.textContent = originalLabel;
+  }
 }
 
 document.getElementById('emailInput').addEventListener('keydown', function(e) {
