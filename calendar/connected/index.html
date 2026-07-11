@@ -92,13 +92,21 @@
         <polyline points="9 16 11 18 15 14"/>
       </svg>
     </div>
-    <h1>Calendar Connected! 📅</h1>
-    <p>Your Google Calendar is now connected to Pawsby.<br>You can close this window.</p>
+    <h1 id="title">Calendar Connected! 📅</h1>
+    <p id="desc">Your calendar is now connected to Pawsby.<br>You can close this window.</p>
     <a class="btn" id="openBtn" aria-disabled="true" tabindex="-1">Open Pawsby</a>
   </div>
   <script>
     (function() {
       var params = new URLSearchParams(window.location.search);
+
+      // Show the right provider name — falls back to generic wording if not present.
+      var provider = params.get('provider');
+      var providerNames = { google: 'Google Calendar', outlook: 'Outlook Calendar' };
+      var providerLabel = providerNames[provider] || 'calendar';
+      document.getElementById('desc').innerHTML =
+        'Your ' + providerLabel + ' is now connected to Pawsby.<br>You can close this window.';
+
       var raw = params.get('deeplink');
       if (raw) {
         try {
