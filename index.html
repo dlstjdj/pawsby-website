@@ -410,6 +410,35 @@ nav {
   margin-bottom: 4px;
 }
 
+/* COMING SOON */
+.soon {
+  padding: 6rem 2rem;
+  max-width: 860px;
+  margin: 0 auto;
+}
+.soon-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+}
+.soon-card {
+  background: transparent;
+  border: 1.5px dashed var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+}
+.soon-card h3 {
+  font-size: 15px;
+  font-weight: 500;
+  margin-bottom: 6px;
+  color: var(--text-muted);
+}
+.soon-card p {
+  font-size: 13px;
+  color: var(--text-light);
+  line-height: 1.6;
+}
+
 /* FOOTER */
 footer {
   text-align: center;
@@ -536,7 +565,7 @@ footer p {
     <div class="feat-card">
       <div class="feat-icon"><i class="ti ti-calendar-event" aria-hidden="true"></i></div>
       <h3>Calendar alerts</h3>
-      <p>Connect Google or Outlook. Pawsby reminds you of meetings before they start — and can schedule them too.</p>
+      <p>Connect Google or Outlook. Pawsby reminds you of meetings before they start.</p>
     </div>
     <div class="feat-card">
       <div class="feat-icon"><i class="ti ti-device-desktop" aria-hidden="true"></i></div>
@@ -547,11 +576,6 @@ footer p {
       <div class="feat-icon"><i class="ti ti-lock" aria-hidden="true"></i></div>
       <h3>Private by default</h3>
       <p>Chat history stays on your device. Sync is opt-in and end-to-end encrypted — we can't read it.</p>
-    </div>
-    <div class="feat-card">
-      <div class="feat-icon"><i class="ti ti-palette" aria-hidden="true"></i></div>
-      <h3>Custom pet</h3>
-      <p>Upload a photo of your real cat and we'll turn it into your personal AI companion.</p>
     </div>
     <div class="feat-card">
       <div class="feat-icon"><i class="ti ti-refresh" aria-hidden="true"></i></div>
@@ -572,9 +596,7 @@ footer p {
         <p class="plan-tagline">Silent companion</p>
         <ul class="plan-features">
           <li><i class="ti ti-check" aria-hidden="true"></i>Pet walks &amp; reacts</li>
-          <li><i class="ti ti-check" aria-hidden="true"></i>Calendar alerts</li>
           <li><i class="ti ti-check" aria-hidden="true"></i>Pet commands</li>
-          <li><i class="ti ti-check" aria-hidden="true"></i>3-day AI trial</li>
         </ul>
       </div>
       <div class="plan-card featured">
@@ -585,8 +607,8 @@ footer p {
         <ul class="plan-features">
           <li><i class="ti ti-check" aria-hidden="true"></i>50 AI chats/day</li>
           <li><i class="ti ti-check" aria-hidden="true"></i>Web search</li>
-          <li><i class="ti ti-check" aria-hidden="true"></i>Sync all devices</li>
-          <li><i class="ti ti-check" aria-hidden="true"></i>1 custom pet</li>
+          <li><i class="ti ti-check" aria-hidden="true"></i>Calendar alerts</li>
+          <li><i class="ti ti-check" aria-hidden="true"></i>Sync up to 2 devices</li>
           <li><i class="ti ti-check" aria-hidden="true"></i>7-day free trial</li>
         </ul>
       </div>
@@ -597,8 +619,8 @@ footer p {
         <ul class="plan-features">
           <li><i class="ti ti-check" aria-hidden="true"></i>Unlimited AI chats</li>
           <li><i class="ti ti-check" aria-hidden="true"></i>Claude Haiku model</li>
-          <li><i class="ti ti-check" aria-hidden="true"></i>Calendar scheduling</li>
-          <li><i class="ti ti-check" aria-hidden="true"></i>3 custom pets</li>
+          <li><i class="ti ti-check" aria-hidden="true"></i>Calendar alerts</li>
+          <li><i class="ti ti-check" aria-hidden="true"></i>Sync unlimited devices</li>
           <li><i class="ti ti-check" aria-hidden="true"></i>7-day free trial</li>
         </ul>
       </div>
@@ -608,11 +630,43 @@ footer p {
         <p class="plan-tagline">Coming soon</p>
         <ul class="plan-features">
           <li><i class="ti ti-check" aria-hidden="true"></i>Premium AI model</li>
+          <li><i class="ti ti-check" aria-hidden="true"></i>Calendar scheduling</li>
           <li><i class="ti ti-check" aria-hidden="true"></i>Voice input</li>
           <li><i class="ti ti-check" aria-hidden="true"></i>Screen awareness</li>
           <li><i class="ti ti-check" aria-hidden="true"></i>And more...</li>
         </ul>
       </div>
+    </div>
+  </div>
+</section>
+
+<section class="soon">
+  <p class="section-label">Roadmap</p>
+  <h2 class="section-title">What we're building next</h2>
+  <div class="soon-grid">
+    <div class="soon-card">
+      <h3>Custom pet from a photo</h3>
+      <p>Upload a photo of your real cat and we'll turn it into your personal AI companion.</p>
+    </div>
+    <div class="soon-card">
+      <h3>Calendar scheduling</h3>
+      <p>Create and move events from a chat with your pet, not just get reminded of them.</p>
+    </div>
+    <div class="soon-card">
+      <h3>Desktop behaviors</h3>
+      <p>Your pet walks along your taskbar, sits on window edges, and reacts to your cursor.</p>
+    </div>
+    <div class="soon-card">
+      <h3>Voice input</h3>
+      <p>Talk to your pet out loud instead of typing.</p>
+    </div>
+    <div class="soon-card">
+      <h3>Screen awareness</h3>
+      <p>Your pet notices what you're working on and reacts accordingly.</p>
+    </div>
+    <div class="soon-card">
+      <h3>Pet marketplace</h3>
+      <p>Browse and download new looks for your pet, made by the community.</p>
     </div>
   </div>
 </section>
