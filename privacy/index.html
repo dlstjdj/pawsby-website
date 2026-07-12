@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Privacy Policy — Pawsby</title>
+  <link rel="icon" type="image/png" href="/favicon.png">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
@@ -72,12 +73,24 @@
       margin: 12px 0 20px;
       font-size: 13.5px;
     }
+    .table-wrap {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      margin: 12px 0 20px;
+    }
+    .table-wrap table { margin: 0; }
     th, td {
       text-align: left;
       padding: 8px 10px;
       border-bottom: 1px solid var(--border);
+      white-space: nowrap;
     }
     th { color: var(--sub); font-weight: 600; }
+    @media (max-width: 480px) {
+      body { padding: 24px 0 60px; }
+      .doc { padding: 32px 24px; border-radius: 0; max-width: 100%; }
+      h1 { font-size: 22px; }
+    }
     footer {
       margin-top: 40px;
       padding-top: 20px;
@@ -140,6 +153,7 @@
     </ul>
 
     <h2>2. Where your data is stored</h2>
+    <div class="table-wrap">
     <table>
       <tr><th>Data</th><th>Where</th></tr>
       <tr><td>Chat history, pet data (default)</td><td>Your device only (local SQLite database)</td></tr>
@@ -148,6 +162,7 @@
       <tr><td>Calendar tokens (if connected)</td><td>Supabase, Tokyo — encrypted at rest</td></tr>
       <tr><td>Payment details</td><td>Creem (we never receive your card details)</td></tr>
     </table>
+    </div>
     <p class="sub">Because our server is located in Japan, using Pawsby means some of your data may be transferred and stored overseas. We take reasonable steps to keep it secure regardless of location.</p>
 
     <h2>3. How we use your information</h2>
