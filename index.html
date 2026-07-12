@@ -36,9 +36,23 @@
   --text-light: #9999b5;
   --bg: #ffffff;
   --bg-secondary: #f7f7fc;
+  --card-bg: #ffffff;
   --border: rgba(83, 74, 183, 0.12);
   --radius: 12px;
   --radius-lg: 20px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --purple-light: #2a2650;
+    --text: #f2f2f7;
+    --text-muted: #a3a3c2;
+    --text-light: #7a7a9a;
+    --bg: #1a1a2e;
+    --bg-secondary: #22223a;
+    --card-bg: #24243c;
+    --border: rgba(175, 169, 236, 0.18);
+  }
 }
 
 html { scroll-behavior: smooth; }
@@ -60,7 +74,7 @@ nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: rgba(255,255,255,0.85);
+  background: color-mix(in srgb, var(--bg) 85%, transparent);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border);
 }
@@ -225,7 +239,7 @@ nav {
   position: relative;
 }
 .speech-bubble {
-  background: white;
+  background: var(--card-bg);
   border: 1px solid var(--border);
   border-radius: 12px;
   padding: 8px 14px;
@@ -242,7 +256,7 @@ nav {
   bottom: -7px;
   left: 20px;
   width: 12px; height: 12px;
-  background: white;
+  background: var(--card-bg);
   border-right: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
   transform: rotate(45deg);
@@ -438,7 +452,7 @@ footer p {
   bottom: 2rem;
   left: 50%;
   transform: translateX(-50%) translateY(20px);
-  background: var(--text);
+  background: #1a1a2e;
   color: white;
   padding: 10px 20px;
   border-radius: 100px;
@@ -466,16 +480,7 @@ footer p {
 
 <nav>
   <a href="#" class="nav-logo">
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-      <ellipse cx="12" cy="14" rx="7" ry="6" fill="#534AB7"/>
-      <ellipse cx="12" cy="10" rx="6" ry="5.5" fill="#534AB7"/>
-      <polygon points="7,7 5,2 9.5,6" fill="#534AB7"/>
-      <polygon points="17,7 19,2 14.5,6" fill="#534AB7"/>
-      <ellipse cx="12" cy="10" rx="4" ry="3.5" fill="#EEEDFE"/>
-      <circle cx="9.5" cy="9" r="1.2" fill="#3C3489"/>
-      <circle cx="14.5" cy="9" r="1.2" fill="#3C3489"/>
-      <ellipse cx="12" cy="11.5" rx="1" ry="0.7" fill="#D4537E"/>
-    </svg>
+    <img src="/favicon.png" alt="" width="24" height="24" style="display:block;">
     Pawsby
   </a>
   <ul class="nav-links">
@@ -511,26 +516,7 @@ footer p {
       </div>
       <div class="cat-area">
         <div class="speech-bubble">You have a meeting in 10 min ☕</div>
-        <svg width="110" height="110" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <ellipse cx="60" cy="75" rx="32" ry="30" fill="#AFA9EC"/>
-          <ellipse cx="60" cy="50" rx="26" ry="24" fill="#AFA9EC"/>
-          <polygon points="36,32 28,12 46,26" fill="#AFA9EC"/>
-          <polygon points="84,32 92,12 74,26" fill="#AFA9EC"/>
-          <ellipse cx="60" cy="50" rx="18" ry="16" fill="#EEEDFE"/>
-          <circle cx="50" cy="47" r="4" fill="#3C3489"/>
-          <circle cx="70" cy="47" r="4" fill="#3C3489"/>
-          <circle cx="51" cy="46" r="1.5" fill="white"/>
-          <circle cx="71" cy="46" r="1.5" fill="white"/>
-          <ellipse cx="60" cy="56" rx="3" ry="2" fill="#D4537E"/>
-          <path d="M55 60 Q60 64 65 60" stroke="#3C3489" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-          <line x1="42" y1="54" x2="34" y2="52" stroke="#3C3489" stroke-width="1" stroke-linecap="round"/>
-          <line x1="42" y1="57" x2="34" y2="57" stroke="#3C3489" stroke-width="1" stroke-linecap="round"/>
-          <line x1="78" y1="54" x2="86" y2="52" stroke="#3C3489" stroke-width="1" stroke-linecap="round"/>
-          <line x1="78" y1="57" x2="86" y2="57" stroke="#3C3489" stroke-width="1" stroke-linecap="round"/>
-          <ellipse cx="60" cy="95" rx="12" ry="6" fill="#9F99DD"/>
-          <path d="M48 90 Q44 100 40 105" stroke="#AFA9EC" stroke-width="6" stroke-linecap="round" fill="none"/>
-          <path d="M72 90 Q76 100 80 105" stroke="#AFA9EC" stroke-width="6" stroke-linecap="round" fill="none"/>
-        </svg>
+        <img src="/persian-demo.png" alt="Pawsby cat" width="110" height="110" style="image-rendering: pixelated; image-rendering: crisp-edges;">
         <p class="demo-msg">Pawsby lives right on your desktop</p>
       </div>
     </div>
