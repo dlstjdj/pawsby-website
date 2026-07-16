@@ -101,7 +101,6 @@
     (function() {
       var params = new URLSearchParams(window.location.search);
 
-      // Show the right provider name — falls back to generic wording if not present.
       var provider = params.get('provider');
       var providerNames = { google: 'Google Calendar', outlook: 'Outlook Calendar' };
       var providerLabel = providerNames[provider] || 'calendar';
@@ -112,7 +111,7 @@
       if (raw) {
         try {
           var dl = decodeURIComponent(raw);
-          if (dl.startsWith('ai-pet://')) {
+          if (dl.startsWith('pawsby://')) {
             var btn = document.getElementById('openBtn');
             btn.href = dl;
             btn.removeAttribute('aria-disabled');
