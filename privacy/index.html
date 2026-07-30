@@ -1,207 +1,200 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Privacy Policy — Pawsby</title>
-  <link rel="icon" type="image/png" href="/favicon.png">
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root {
-      --bg: #f5f5f7;
-      --card: #ffffff;
-      --text: #1c1c1e;
-      --sub: #636366;
-      --blue: #3B82F6;
-      --blue-dark: #2563eb;
-      --border: #e5e5e5;
-    }
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --bg: #1c1c1e;
-        --card: #2c2c2e;
-        --text: #f2f2f7;
-        --sub: #aeaeb2;
-        --border: #3a3a3c;
-      }
-    }
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.65;
-      padding: 48px 20px 80px;
-    }
-    .doc {
-      background: var(--card);
-      border-radius: 20px;
-      padding: 48px;
-      max-width: 720px;
-      margin: 0 auto;
-      box-shadow: 0 4px 32px rgba(0,0,0,0.06);
-    }
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 16px;
-      font-weight: 700;
-      color: var(--blue);
-      margin-bottom: 32px;
-    }
-    h1 { font-size: 28px; font-weight: 700; margin-bottom: 6px; }
-    .updated { font-size: 13px; color: var(--sub); margin-bottom: 36px; }
-    h2 { font-size: 18px; font-weight: 700; margin: 36px 0 12px; }
-    h3 { font-size: 15px; font-weight: 600; margin: 20px 0 8px; }
-    p, li { font-size: 14.5px; color: var(--text); margin-bottom: 10px; }
-    .sub { color: var(--sub); }
-    ul, ol { padding-left: 22px; margin-bottom: 14px; }
-    a { color: var(--blue); text-decoration: none; }
-    a:hover { text-decoration: underline; }
-    .note {
-      background: rgba(59,130,246,0.08);
-      border-left: 3px solid var(--blue);
-      padding: 12px 16px;
-      border-radius: 8px;
-      font-size: 13.5px;
-      color: var(--sub);
-      margin: 16px 0;
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin: 12px 0 20px;
-      font-size: 13.5px;
-    }
-    .table-wrap {
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-      margin: 12px 0 20px;
-    }
-    .table-wrap table { margin: 0; }
-    th, td {
-      text-align: left;
-      padding: 8px 10px;
-      border-bottom: 1px solid var(--border);
-      white-space: nowrap;
-    }
-    th { color: var(--sub); font-weight: 600; }
-    @media (max-width: 480px) {
-      body { padding: 24px 0 60px; }
-      .doc { padding: 32px 24px; border-radius: 0; max-width: 100%; }
-      h1 { font-size: 22px; }
-    }
-    footer {
-      margin-top: 40px;
-      padding-top: 20px;
-      border-top: 1px solid var(--border);
-      font-size: 13px;
-      color: var(--sub);
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy — Pawsby</title>
+<meta name="description" content="What Pawsby stores, what it never sees, and how to get your data deleted.">
+<link rel="icon" href="/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Public+Sans:wght@400;500;600&family=Silkscreen&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/pawsby.css">
 </head>
 <body>
-  <div class="doc">
-    <div class="logo">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-        <ellipse cx="12" cy="14" rx="7" ry="6" fill="#3B82F6"/>
-        <ellipse cx="12" cy="10" rx="6" ry="5.5" fill="#3B82F6"/>
-        <polygon points="7,7 5,2 9.5,6" fill="#3B82F6"/>
-        <polygon points="17,7 19,2 14.5,6" fill="#3B82F6"/>
-      </svg>
-      Pawsby
-    </div>
 
-    <h1>Privacy Policy</h1>
-    <p class="updated">Last updated: July 9, 2026</p>
+<div class="wrap-narrow">
+  <nav class="nav">
+    <a class="brand" href="/"><img src="/favicon.png" alt=""><b>Pawsby</b></a>
+    <div class="nav-links"><a href="/terms">Terms</a><a href="/delete-account">Delete account</a></div>
+  </nav>
+</div>
 
-    <p>Pawsby is operated by a sole trader based in Victoria, Australia (ABN 81 914 923 253). This policy explains what information Pawsby collects, why, and how you can control it.</p>
+<main class="wrap-narrow section-tight">
+  <span class="eyebrow">Legal</span>
+  <h1 style="font-size:clamp(30px,5vw,42px)">Privacy Policy</h1>
+  <p class="hint">Last updated 31 July 2026</p>
 
-    <div class="note">
-      Pawsby is built to be local-first: your chat history and pet data live on your device by default. Nothing is sent to our servers unless you turn on an optional feature (like Cloud Sync or a paid AI plan) that needs it.
-    </div>
-
-    <h2>1. Information we collect</h2>
-
-    <h3>Everyone (including the free tier)</h3>
-    <ul>
-      <li><strong>A random device ID</strong> generated on install — not tied to your name or email, used only to identify your device for rate-limiting and sync.</li>
-      <li><strong>Chat messages</strong>, if you use the AI chat feature. On the free tier, your message is sent to our AI provider (Groq) to generate a reply, then discarded — we don't store it on our servers.</li>
-    </ul>
-
-    <h3>If you subscribe (Standard/Premium)</h3>
-    <ul>
-      <li><strong>Your email address</strong>, collected at checkout by our payment processor (Creem) and used to verify your subscription and let you restore it on a new device.</li>
-      <li><strong>Your chat messages</strong> are sent to our AI provider (OpenAI or Anthropic, depending on your plan) to generate replies.</li>
-      <li><strong>Payment details</strong> are handled entirely by Creem, our payment processor and merchant of record. We never see or store your card details.</li>
-    </ul>
-
-    <h3>If you turn on Cloud Sync (optional, paid feature)</h3>
-    <ul>
-      <li>Your chat history, pet settings, and a few account preferences (name, language) are encrypted on your device and stored on our servers so they can sync to your other devices. <strong>We store this data encrypted and cannot read its contents.</strong></li>
-      <li>You can turn this off, or permanently delete your synced cloud data, at any time from Settings → Sync.</li>
-    </ul>
-
-    <h3>If you connect a calendar (optional)</h3>
-    <ul>
-      <li>If you connect Google Calendar or Outlook Calendar, we store an encrypted access token on our servers so Pawsby can check your upcoming events and remind you. We only read calendar event times and titles — we don't access anything else in your account.</li>
-    </ul>
-
-    <h3>If you use your own API key (BYOK)</h3>
-    <ul>
-      <li>Your API key is stored only in your device's secure system keychain. It never leaves your device or touches our servers.</li>
-    </ul>
-
-    <h2>2. Where your data is stored</h2>
-    <div class="table-wrap">
-    <table>
-      <tr><th>Data</th><th>Where</th></tr>
-      <tr><td>Chat history, pet data (default)</td><td>Your device only (local SQLite database)</td></tr>
-      <tr><td>Cloud Sync data (if enabled)</td><td>Supabase, hosted in Tokyo, Japan — encrypted, we cannot read it</td></tr>
-      <tr><td>Subscription &amp; email</td><td>Supabase, Tokyo — used to verify your plan and enable restore</td></tr>
-      <tr><td>Calendar tokens (if connected)</td><td>Supabase, Tokyo — encrypted at rest</td></tr>
-      <tr><td>Payment details</td><td>Creem (we never receive your card details)</td></tr>
-    </table>
-    </div>
-    <p class="sub">Because our server is located in Japan, using Pawsby means some of your data may be transferred and stored overseas. We take reasonable steps to keep it secure regardless of location.</p>
-
-    <h2>3. How we use your information</h2>
-    <ul>
-      <li>To provide the AI chat, calendar reminder, and sync features you choose to use</li>
-      <li>To verify your subscription and let you restore it across devices</li>
-      <li>To send you emails you request (like a one-time login/restore code) via our email provider, Resend</li>
-      <li>We do not sell your data, and we do not use your chat content for advertising or marketing</li>
-    </ul>
-
-    <h2>4. Your choices &amp; rights</h2>
-    <ul>
-      <li><strong>Delete your synced cloud data</strong> anytime from Settings → Sync → Delete All Cloud Data.</li>
-      <li><strong>Delete your local data</strong> by uninstalling the app — since most data lives only on your device, this removes it completely from that device.</li>
-      <li><strong>Delete your account entirely</strong> (subscription, email, and all cloud data) at <a href="https://pawsby.app/delete-account">pawsby.app/delete-account</a>. This is permanent and cannot be undone.</li>
-      <li><strong>Disconnect a calendar</strong> anytime from Settings → Productivity.</li>
-    </ul>
-
-    <h2>5. International users</h2>
-    <p>Pawsby is a small, solo-run product based in Australia. If you're located in the EU/EEA or UK, we make a genuine effort to honor the principles behind data protection laws like the GDPR — transparency about what we collect, and your ability to access or delete your data (see Section 4). Given the scale of this product, we have not appointed a formal EU representative. If you have concerns about your data, please contact us using the details below and we'll do our best to help.</p>
-
-    <h2>6. Australian small business notice</h2>
-    <p>As a small business, Pawsby may not be required to comply with the Australian Privacy Principles under the Privacy Act 1988 (Cth). We choose to follow their spirit regardless, as described throughout this policy.</p>
-
-    <h2>7. Data retention</h2>
-    <ul>
-      <li>Chat history and personal account data are deleted within 30 days of you deleting your account.</li>
-      <li>Billing records may be retained longer where required by Australian tax law (generally up to 5 years).</li>
-    </ul>
-
-    <h2>8. Changes to this policy</h2>
-    <p>If we make material changes, subscribers will be notified by email, and all users will see a notice in the app. The "Last updated" date at the top of this page will always reflect the most recent version.</p>
-
-    <h2>9. Contact</h2>
-    <p>Questions about this policy or your data? Email <a href="mailto:privacy@pawsby.app">privacy@pawsby.app</a>.</p>
-
-    <footer>
-      Pawsby is operated by a sole trader (ABN 81 914 923 253), Victoria, Australia.
-    </footer>
+  <div class="callout">
+    <b>The short version.</b> Your conversations with your pet are stored on your own
+    computer in an encrypted database. We can't read them. If you turn on sync, they're
+    encrypted on your device before they leave it, and our server only ever holds
+    ciphertext it has no key for. We run no analytics and no telemetry.
   </div>
+
+  <div class="prose">
+
+    <h2>1. Who we are</h2>
+    <p>
+      Pawsby is operated by Jay Jeong, a sole trader registered in Victoria, Australia
+      (ABN 81 914 923 253). For anything in this policy, write to
+      <a href="mailto:hello@pawsby.app">hello@pawsby.app</a>.
+    </p>
+
+    <h2>2. What we hold, and why</h2>
+    <table>
+      <tr><th>Data</th><th>Why</th><th>Where</th></tr>
+      <tr>
+        <td>Email address</td>
+        <td>Manage your subscription, send one-time codes, restore access on a new device, waitlist announcements</td>
+        <td>Supabase, Resend</td>
+      </tr>
+      <tr>
+        <td>Account ID<br><span class="muted">random identifier generated on your device</span></td>
+        <td>Tie a subscription to your installs without needing a login</td>
+        <td>Supabase</td>
+      </tr>
+      <tr>
+        <td>Device ID<br><span class="muted">random identifier, not a hardware serial</span></td>
+        <td>Show your connected devices and enforce device limits</td>
+        <td>Supabase</td>
+      </tr>
+      <tr>
+        <td>Subscription tier and expiry</td>
+        <td>Decide what the app is allowed to do</td>
+        <td>Supabase</td>
+      </tr>
+      <tr>
+        <td>Encrypted chat rows<br><span class="muted">only if you turn on sync</span></td>
+        <td>Carry history between your own devices</td>
+        <td>Supabase (ciphertext only)</td>
+      </tr>
+      <tr>
+        <td>Encrypted calendar tokens<br><span class="muted">only if you connect a calendar</span></td>
+        <td>Read upcoming events so your pet can remind you</td>
+        <td>Your device</td>
+      </tr>
+    </table>
+
+    <h3>What we don't hold</h3>
+    <ul>
+      <li>Card numbers. Payments run through Creem, which is the merchant of record. We never receive your card details.</li>
+      <li>Readable chat history. See section 3.</li>
+      <li>Your own API key, if you use one. It's encrypted and stays on your device.</li>
+      <li>Analytics, usage tracking, session recording, advertising identifiers. There is none of this in the app.</li>
+    </ul>
+
+    <h2>3. Your conversations</h2>
+    <p>
+      Chat history is written to a local SQLite database that is fully encrypted with
+      SQLCipher, using a key held in your operating system's keychain — Windows DPAPI or
+      the macOS Keychain. It is tied to your OS user account.
+    </p>
+    <p>
+      Sync is off until you switch it on and accept a consent dialog. When it's on, each
+      row is encrypted with AES-256-GCM on your device before upload. The key is derived
+      from your account identifier and never sent to us, so what lands in the database is
+      ciphertext we cannot decrypt. You can erase all of it at any time from
+      <b>Settings → Sync → Delete All Cloud Data</b>, which leaves your local copy intact.
+    </p>
+
+    <h2>4. Sending messages to an AI model</h2>
+    <p>
+      To answer you, the app sends your message, a short slice of recent conversation, and
+      your pet's persona to a model provider. Depending on your plan that provider is
+      reached through OpenRouter (which routes to OpenAI or Anthropic) or Groq. These
+      requests are relayed by our server so that our API keys are never shipped inside the
+      app; we don't store the message content in the process.
+    </p>
+    <p>
+      When your question needs current information, the app sends a search query — not your
+      whole conversation — to Tavily, and briefly caches the result in Upstash Redis so the
+      same question doesn't get charged twice.
+    </p>
+    <p>
+      If you supply your own API key instead, requests go straight from your machine to the
+      provider you chose and don't pass through us at all. That provider's own privacy terms
+      apply to those requests.
+    </p>
+
+    <h2>5. Calendars</h2>
+    <p>
+      Connecting Google Calendar or Outlook is optional. We request read access to your
+      events, and the resulting tokens are encrypted and stored on your device. Event titles
+      and times are used to produce reminders and are not uploaded to us. Disconnecting in
+      <b>Settings → Productivity</b> deletes the stored tokens.
+    </p>
+
+    <h2>6. Where your data physically sits</h2>
+    <ul>
+      <li><b>Supabase</b> — Tokyo, Japan (ap-northeast-1). Account records and encrypted sync rows.</li>
+      <li><b>Upstash Redis</b> — rate-limit counters and short-lived search caches.</li>
+      <li><b>Resend</b> — sending one-time codes and launch email.</li>
+      <li><b>Creem</b> — payment processing and invoices.</li>
+      <li><b>OpenRouter, Anthropic, OpenAI, Groq, Tavily</b> — transient request processing only.</li>
+    </ul>
+    <p>
+      Because these providers operate internationally, your data may be processed outside
+      Australia and outside your own country.
+    </p>
+
+    <h2>7. How long we keep it</h2>
+    <ul>
+      <li>Account and subscription records: while your subscription is active, and afterwards only as long as we need them for tax and accounting obligations.</li>
+      <li>Encrypted sync rows: until you delete them, or until your account is deleted.</li>
+      <li>One-time codes: five minutes.</li>
+      <li>Search caches: minutes.</li>
+      <li>Local chat history: until you delete it. It is never removed on our schedule.</li>
+    </ul>
+
+    <h2>8. Your rights</h2>
+    <p>
+      You can ask for a copy of what we hold, ask us to correct it, or ask us to erase it.
+      The fastest route to erasure is <a href="/delete-account">pawsby.app/delete-account</a>,
+      which confirms by email and then removes your account records, device list and
+      encrypted sync rows. For anything else, email
+      <a href="mailto:hello@pawsby.app">hello@pawsby.app</a> and we'll answer within 30 days.
+    </p>
+    <p>
+      If you're in the EU, EEA or UK you also have the right to object to processing, to
+      restrict it, and to complain to your local data protection authority. In Australia you
+      can complain to the Office of the Australian Information Commissioner. Deleting your
+      account does not automatically cancel billing — cancel the subscription too, or write
+      to us and we'll do both.
+    </p>
+
+    <h2>9. Children</h2>
+    <p>
+      Pawsby isn't built for children and we don't knowingly collect anything from anyone
+      under 16. If you believe a child has given us their details, email us and we'll delete
+      them.
+    </p>
+
+    <h2>10. Security, honestly stated</h2>
+    <p>
+      Local storage is encrypted, sync is end-to-end encrypted, and all network traffic uses
+      HTTPS. Subscription status is signed by our server so it can't be forged on the client.
+      That said, no system is perfect, and we won't pretend otherwise. If we ever discover a
+      breach affecting your data we'll tell you and the relevant regulator as the law
+      requires.
+    </p>
+
+    <h2>11. Changes</h2>
+    <p>
+      If this policy changes in a way that matters, we'll update the date above and — for
+      anything significant — email the address on your account. Continuing to use Pawsby
+      after a change means you accept it.
+    </p>
+
+  </div>
+</main>
+
+<footer class="foot">
+  <div class="wrap-narrow foot-row">
+    <span><a href="/">← Pawsby</a></span>
+    <span><a href="/terms">Terms</a> · <a href="/delete-account">Delete account</a> · <a href="mailto:hello@pawsby.app">hello@pawsby.app</a></span>
+  </div>
+</footer>
+
 </body>
 </html>
