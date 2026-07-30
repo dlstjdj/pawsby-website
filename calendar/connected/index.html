@@ -32,8 +32,8 @@
     <span class="eyebrow" style="margin-top:10px">Calendar connected</span>
     <h1 style="font-size:clamp(25px,4.4vw,33px);margin-top:8px" id="head">Handing it to Pawsby…</h1>
     <p class="lead" style="margin-left:auto;margin-right:auto;font-size:15.5px" id="body">
-      Your browser is passing the connection back to the app. If it asks for permission
-      to open Pawsby, say yes.
+      Your <b id="which">calendar</b> is linked. Your browser is passing the connection
+      back to the app — if it asks for permission to open Pawsby, say yes.
     </p>
 
     <a class="btn btn-block" id="open" href="#" style="margin-top:20px;display:none">Open Pawsby</a>
@@ -72,7 +72,14 @@
   //   /calendar/connected?deeplink=pawsby%3A//oauth/callback%3Fdata%3D<encrypted>%26provider%3D...
   // The encrypted token exists nowhere else, so forwarding that parameter to the
   // desktop app is this page's entire job.
-  var link = new URLSearchParams(location.search).get('deeplink') || '';
+  var params = new URLSearchParams(location.search);
+  var link   = params.get('deeplink') || '';
+
+  // The callback also tells us which calendar was connected — name it, so the
+  // person can see they linked the account they meant to.
+  var NAMES = { google: 'Google Calendar', outlook: 'Outlook Calendar' };
+  var which = NAMES[params.get('provider')] || 'calendar';
+  document.getElementById('which').textContent = which;
 
   // Only ever follow our own scheme — never an arbitrary URL supplied in the query.
   if (link.indexOf('pawsby://') !== 0) {
@@ -96,8 +103,9 @@
   // If the app hasn't taken over by now, stop implying that it will.
   setTimeout(function(){
     document.getElementById('head').textContent = 'You can close this tab.';
-    document.getElementById('body').textContent =
-      'If Pawsby didn\u2019t come forward, press the button below — it hands the connection to the app.';
+    document.getElementById('body').innerHTML =
+      '<b>' + which + '</b> is linked. If Pawsby didn\u2019t come forward, press the ' +
+      'button below — it hands the connection to the app.';
   }, 3500);
 })();
 </script>
