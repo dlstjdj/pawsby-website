@@ -1,0 +1,165 @@
+/* ==========================================================================
+   Pawsby — shared design system
+   Palette is sampled from the pixel-cat artwork, not a template:
+   --eye is the British Shorthair's eye blue, --collar the cushion red,
+   --slate the Russian Blue's fur, --ink the sprite outline.
+   ========================================================================== */
+
+:root{
+  --paper:#EEF0F2;
+  --card:#FFFFFF;
+  --ink:#1B1F24;
+  --slate:#6B7480;
+  --hair:#D8DCE0;
+  --hair-strong:#BFC6CC;
+  --eye:#2E8FD4;
+  --eye-deep:#1F6EA8;
+  --collar:#C0392B;
+  --grass:#3E8E5A;
+  --sand:#C89B6A;
+
+  --display:'Bricolage Grotesque',system-ui,-apple-system,sans-serif;
+  --body:'Public Sans',system-ui,-apple-system,sans-serif;
+  --pixel:'Silkscreen',ui-monospace,monospace;
+
+  --r:12px;
+  --grid:22px;
+}
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:var(--body);font-size:15.5px;line-height:1.6;
+  background-image:
+    linear-gradient(to right,rgba(27,31,36,.035) 1px,transparent 1px),
+    linear-gradient(to bottom,rgba(27,31,36,.035) 1px,transparent 1px);
+  background-size:var(--grid) var(--grid);
+}
+img{max-width:100%;height:auto}
+a{color:var(--eye-deep)}
+::selection{background:#CFE4F5}
+
+/* ── layout ─────────────────────────────────────────────── */
+.wrap{max-width:1040px;margin:0 auto;padding:0 22px}
+.wrap-narrow{max-width:720px;margin:0 auto;padding:0 22px}
+.section{padding:76px 0}
+.section-tight{padding:44px 0}
+
+/* ── type ───────────────────────────────────────────────── */
+.eyebrow{
+  font-family:var(--pixel);font-size:10px;letter-spacing:.07em;
+  text-transform:uppercase;color:var(--slate);display:block;
+}
+h1,h2,h3{font-family:var(--display);letter-spacing:-.03em;margin:0}
+h1{font-weight:800;font-size:clamp(34px,6.4vw,60px);line-height:1.02}
+h2{font-weight:800;font-size:clamp(25px,3.6vw,34px);line-height:1.1;margin:10px 0 8px}
+h3{font-weight:600;font-size:17px;letter-spacing:-.015em;margin:0 0 5px}
+.accent{color:var(--eye-deep)}
+.lead{color:var(--slate);font-size:17px;margin:14px 0 0;max-width:52ch}
+.muted{color:var(--slate)}
+
+/* ── buttons ────────────────────────────────────────────── */
+.btn,.btn-ghost{
+  display:inline-block;font-family:var(--display);font-weight:600;font-size:16px;
+  letter-spacing:-.01em;padding:13px 24px;border-radius:10px;border:1.5px solid transparent;
+  cursor:pointer;text-decoration:none;transition:background .16s,border-color .16s,color .16s;
+}
+.btn{background:var(--ink);color:#fff}
+.btn:hover{background:#2C333B}
+.btn-ghost{background:transparent;color:var(--ink);border-color:var(--hair-strong)}
+.btn-ghost:hover{border-color:var(--ink)}
+.btn-block{display:block;width:100%;text-align:center}
+.btn[disabled]{background:var(--slate);cursor:progress}
+.btn:focus-visible,.btn-ghost:focus-visible{outline:2px solid var(--eye);outline-offset:2px}
+
+/* ── cards ──────────────────────────────────────────────── */
+.card{
+  background:var(--card);border:1.5px solid var(--hair);
+  border-radius:var(--r);padding:22px;
+}
+.card-sel{border-color:var(--ink);box-shadow:0 2px 0 var(--ink)}
+.grid{display:grid;gap:14px}
+.g2{grid-template-columns:repeat(2,1fr)}
+.g3{grid-template-columns:repeat(3,1fr)}
+
+/* ── ticked feature lists ───────────────────────────────── */
+.ticks{list-style:none;margin:0;padding:0}
+.ticks li{font-size:14px;padding:4px 0 4px 18px;position:relative}
+.ticks li::before{content:"";position:absolute;left:0;top:11px;width:6px;height:6px;background:var(--eye)}
+.ticks.dim li::before{background:var(--hair-strong)}
+
+/* ── forms ──────────────────────────────────────────────── */
+label{
+  display:block;font-family:var(--pixel);font-size:10px;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--slate);margin-bottom:7px;
+}
+input[type=email],input[type=text]{
+  width:100%;font-family:var(--body);font-size:15.5px;color:var(--ink);
+  padding:11px 13px;border:1.5px solid var(--hair);border-radius:10px;background:#fff;
+}
+input:focus{outline:2px solid var(--eye);outline-offset:-1px;border-color:var(--eye)}
+input.bad{border-color:var(--collar)}
+.otp{font-family:var(--pixel);font-size:20px;letter-spacing:.28em;text-align:center}
+.hint{font-size:13px;color:var(--slate);margin:9px 0 0}
+.msg{font-size:13.5px;margin:10px 0 0;display:none}
+.msg.show{display:block}
+.msg.bad{color:var(--collar)}
+.msg.good{color:var(--grass)}
+.row-inline{display:flex;gap:9px;flex-wrap:wrap}
+.row-inline input{flex:1;min-width:200px}
+
+/* ── billing period toggle ──────────────────────────────── */
+.seg{display:inline-flex;background:var(--card);border:1.5px solid var(--hair);border-radius:9px;padding:3px;gap:3px}
+.seg button{
+  font-family:var(--body);font-size:13px;font-weight:600;border:0;background:transparent;
+  color:var(--slate);padding:6px 14px;border-radius:6px;cursor:pointer;
+}
+.seg button[aria-pressed="true"]{background:var(--ink);color:#fff}
+.seg button:focus-visible{outline:2px solid var(--eye);outline-offset:2px}
+
+/* ── sprites ────────────────────────────────────────────── */
+.sprite{image-rendering:pixelated;display:block}
+
+/* ── site chrome ────────────────────────────────────────── */
+.nav{display:flex;align-items:center;justify-content:space-between;padding:20px 0;gap:14px}
+.brand{display:flex;align-items:center;gap:9px;text-decoration:none;color:var(--ink)}
+.brand img{width:23px;height:23px;image-rendering:pixelated}
+.brand b{font-family:var(--display);font-weight:800;font-size:17.5px;letter-spacing:-.02em}
+.nav-links{display:flex;align-items:center;gap:22px}
+.nav-links a{color:var(--slate);text-decoration:none;font-size:14px;font-weight:500}
+.nav-links a:hover{color:var(--ink)}
+
+.foot{border-top:1px solid var(--hair);margin-top:60px;padding:30px 0 44px;font-size:13px;color:var(--slate)}
+.foot a{color:var(--slate)}
+.foot-row{display:flex;flex-wrap:wrap;gap:8px 18px;justify-content:space-between;align-items:center}
+
+/* ── legal prose ────────────────────────────────────────── */
+.prose{max-width:70ch}
+.prose h2{font-size:22px;margin:38px 0 8px}
+.prose h3{font-size:16px;margin:24px 0 5px}
+.prose p,.prose li{color:#33383F}
+.prose ul{padding-left:20px}
+.prose li{margin:5px 0}
+.prose table{width:100%;border-collapse:collapse;margin:16px 0;font-size:14px}
+.prose th,.prose td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--hair);vertical-align:top}
+.prose th{font-family:var(--pixel);font-size:10px;letter-spacing:.05em;text-transform:uppercase;color:var(--slate)}
+.callout{
+  background:var(--card);border:1.5px solid var(--hair);border-left:4px solid var(--eye);
+  border-radius:0 var(--r) var(--r) 0;padding:15px 18px;margin:22px 0;font-size:14.5px;
+}
+.toc{background:var(--card);border:1.5px solid var(--hair);border-radius:var(--r);padding:16px 20px;margin:26px 0}
+.toc ol{margin:6px 0 0;padding-left:20px;font-size:14px}
+.toc li{margin:3px 0}
+
+/* ── responsive ─────────────────────────────────────────── */
+@media (max-width:760px){
+  .g2,.g3{grid-template-columns:1fr}
+  .section{padding:52px 0}
+  .nav-links{gap:14px}
+  .nav-links a{font-size:13px}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *{animation:none!important;transition:none!important}
+}
