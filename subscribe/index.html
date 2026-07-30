@@ -32,7 +32,7 @@
 
   /* the cat sits on whichever card is chosen, and walks over when you switch */
   .cat{
-    --iw:79px; --ih:78px; --ww:112px; --wh:66px; --strip:560px;
+    --iw:79px; --ih:78px; --ww:112px; --wh:73px; --strip:560px;
     position:absolute;top:0;left:0;width:var(--iw);height:var(--ih);
     background:url('/sprites/russian_blue-idle.png') 0 0/100% 100% no-repeat;
     image-rendering:pixelated;pointer-events:none;
@@ -191,7 +191,7 @@
       cat.classList.toggle('flip', to < from);
       cat.classList.add('walking');
       cat.style.left = (card.offsetLeft + card.offsetWidth/2 - 112/2) + 'px';
-      cat.style.top  = (card.offsetTop - 64) + 'px';
+      cat.style.top  = (card.offsetTop - 71) + 'px';
       clearTimeout(catTimer);
       catTimer = setTimeout(() => {
         cat.classList.remove('walking','flip');
