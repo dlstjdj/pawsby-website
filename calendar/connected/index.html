@@ -12,29 +12,44 @@
 <link rel="stylesheet" href="/css/pawsby.css">
 <style>
   .mid{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:30px 22px}
-  .box{max-width:420px;width:100%;text-align:center}
+  .box{max-width:430px;width:100%;text-align:center}
   .say{
     display:inline-block;background:var(--card);border:1.5px solid var(--ink);
     border-radius:12px 12px 12px 2px;padding:9px 14px;font-size:14px;
     box-shadow:0 3px 0 var(--ink);margin-bottom:14px;
   }
+  #missing{display:none}
 </style>
 </head>
 <body>
 
 <div class="mid">
   <div class="box">
-    <div class="say">Got it — I'll warn you before the next one 🐾</div>
+
+    <div class="say" id="say">Got it — I'll warn you before the next one 🐾</div>
     <img class="sprite" src="/sprites/russian_blue-idle.png" alt="" style="width:104px;margin:0 auto">
 
     <span class="eyebrow" style="margin-top:10px">Calendar connected</span>
-    <h1 style="font-size:clamp(25px,4.4vw,33px);margin-top:8px">You can close this tab.</h1>
-    <p class="lead" style="margin-left:auto;margin-right:auto;font-size:15.5px">
-      Pawsby has your calendar. It reads upcoming events only, keeps the access token
-      encrypted on your device, and will nudge you before each meeting.
+    <h1 style="font-size:clamp(25px,4.4vw,33px);margin-top:8px" id="head">Handing it to Pawsby…</h1>
+    <p class="lead" style="margin-left:auto;margin-right:auto;font-size:15.5px" id="body">
+      Your browser is passing the connection back to the app. If it asks for permission
+      to open Pawsby, say yes.
     </p>
 
-    <div class="card" style="margin-top:22px;text-align:left">
+    <a class="btn btn-block" id="open" href="#" style="margin-top:20px;display:none">Open Pawsby</a>
+
+    <div id="missing">
+      <div class="card" style="margin-top:20px;text-align:left">
+        <span class="eyebrow">Nothing to hand over</span>
+        <p style="margin:8px 0 0;font-size:14px;color:#33383F">
+          This page finishes a calendar connection. It looks like you opened it directly,
+          so there's nothing to pass along — start again from
+          <b>Settings → Productivity</b> inside Pawsby.
+        </p>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:20px;text-align:left">
       <span class="eyebrow">Worth knowing</span>
       <ul class="ticks" style="margin-top:8px">
         <li>Change how early you're warned in <b>Settings → Productivity</b></li>
@@ -44,11 +59,47 @@
     </div>
 
     <p class="hint">
-      Nothing showing up in the app? Reopen <b>Settings → Productivity</b> and connect again,
-      or email <a href="mailto:hello@pawsby.app">hello@pawsby.app</a>.
+      Still not connected in the app? Try again from Settings, or email
+      <a href="mailto:hello@pawsby.app">hello@pawsby.app</a>.
     </p>
   </div>
 </div>
 
+<script>
+(function(){
+  'use strict';
+  // oauth-callback / oauth-outlook-callback redirect here as:
+  //   /calendar/connected?deeplink=pawsby%3A//oauth/callback%3Fdata%3D<encrypted>%26provider%3D...
+  // The encrypted token exists nowhere else, so forwarding that parameter to the
+  // desktop app is this page's entire job.
+  var link = new URLSearchParams(location.search).get('deeplink') || '';
+
+  // Only ever follow our own scheme — never an arbitrary URL supplied in the query.
+  if (link.indexOf('pawsby://') !== 0) {
+    document.getElementById('say').textContent = 'Hmm — nothing arrived with this page';
+    document.getElementById('head').textContent = 'Open this from Pawsby';
+    document.getElementById('body').style.display = 'none';
+    document.getElementById('missing').style.display = 'block';
+    return;
+  }
+
+  var btn = document.getElementById('open');
+  btn.href = link;
+  btn.style.display = 'block';
+
+  // Auto-forward once. A browser may refuse to launch a custom scheme without a
+  // user gesture, which is precisely why the button stays on screen.
+  setTimeout(function(){
+    try { window.location.href = link; } catch (e) {}
+  }, 500);
+
+  // If the app hasn't taken over by now, stop implying that it will.
+  setTimeout(function(){
+    document.getElementById('head').textContent = 'You can close this tab.';
+    document.getElementById('body').textContent =
+      'If Pawsby didn\u2019t come forward, press the button below — it hands the connection to the app.';
+  }, 3500);
+})();
+</script>
 </body>
 </html>
