@@ -1,153 +1,185 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Terms of Service — Pawsby</title>
-  <link rel="icon" type="image/png" href="/favicon.png">
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root {
-      --bg: #f5f5f7;
-      --card: #ffffff;
-      --text: #1c1c1e;
-      --sub: #636366;
-      --blue: #3B82F6;
-      --blue-dark: #2563eb;
-      --border: #e5e5e5;
-    }
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --bg: #1c1c1e;
-        --card: #2c2c2e;
-        --text: #f2f2f7;
-        --sub: #aeaeb2;
-        --border: #3a3a3c;
-      }
-    }
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.65;
-      padding: 48px 20px 80px;
-    }
-    .doc {
-      background: var(--card);
-      border-radius: 20px;
-      padding: 48px;
-      max-width: 720px;
-      margin: 0 auto;
-      box-shadow: 0 4px 32px rgba(0,0,0,0.06);
-    }
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 16px;
-      font-weight: 700;
-      color: var(--blue);
-      margin-bottom: 32px;
-    }
-    h1 { font-size: 28px; font-weight: 700; margin-bottom: 6px; }
-    .updated { font-size: 13px; color: var(--sub); margin-bottom: 36px; }
-    h2 { font-size: 18px; font-weight: 700; margin: 36px 0 12px; }
-    h3 { font-size: 15px; font-weight: 600; margin: 20px 0 8px; }
-    p, li { font-size: 14.5px; color: var(--text); margin-bottom: 10px; }
-    .sub { color: var(--sub); }
-    ul, ol { padding-left: 22px; margin-bottom: 14px; }
-    a { color: var(--blue); text-decoration: none; }
-    a:hover { text-decoration: underline; }
-    .note {
-      background: rgba(59,130,246,0.08);
-      border-left: 3px solid var(--blue);
-      padding: 12px 16px;
-      border-radius: 8px;
-      font-size: 13.5px;
-      color: var(--sub);
-      margin: 16px 0;
-    }
-    footer {
-      margin-top: 40px;
-      padding-top: 20px;
-      border-top: 1px solid var(--border);
-      font-size: 13px;
-      color: var(--sub);
-    }
-    @media (max-width: 480px) {
-      body { padding: 24px 0 60px; }
-      .doc { padding: 32px 24px; border-radius: 0; max-width: 100%; }
-      h1 { font-size: 22px; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terms of Service — Pawsby</title>
+<meta name="description" content="The agreement covering Pawsby subscriptions, refunds and acceptable use.">
+<link rel="icon" href="/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Public+Sans:wght@400;500;600&family=Silkscreen&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/pawsby.css">
 </head>
 <body>
-  <div class="doc">
-    <div class="logo">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-        <ellipse cx="12" cy="14" rx="7" ry="6" fill="#3B82F6"/>
-        <ellipse cx="12" cy="10" rx="6" ry="5.5" fill="#3B82F6"/>
-        <polygon points="7,7 5,2 9.5,6" fill="#3B82F6"/>
-        <polygon points="17,7 19,2 14.5,6" fill="#3B82F6"/>
-      </svg>
-      Pawsby
+
+<div class="wrap-narrow">
+  <nav class="nav">
+    <a class="brand" href="/"><img src="/favicon.png" alt=""><b>Pawsby</b></a>
+    <div class="nav-links"><a href="/privacy">Privacy</a><a href="/delete-account">Delete account</a></div>
+  </nav>
+</div>
+
+<main class="wrap-narrow section-tight">
+  <span class="eyebrow">Legal</span>
+  <h1 style="font-size:clamp(30px,5vw,42px)">Terms of Service</h1>
+  <p class="hint">Last updated 31 July 2026</p>
+
+  <div class="toc">
+    <span class="eyebrow">Contents</span>
+    <ol>
+      <li><a href="#agreement">The agreement</a></li>
+      <li><a href="#licence">What you may do with the app</a></li>
+      <li><a href="#plans">Plans, trials and billing</a></li>
+      <li><a href="#refunds">Cancelling and refunds</a></li>
+      <li><a href="#ai">AI answers</a></li>
+      <li><a href="#byok">Using your own API key</a></li>
+      <li><a href="#use">Acceptable use</a></li>
+      <li><a href="#availability">Availability and changes</a></li>
+      <li><a href="#liability">Warranties and liability</a></li>
+      <li><a href="#ending">Ending the agreement</a></li>
+      <li><a href="#law">Governing law</a></li>
+    </ol>
+  </div>
+
+  <div class="prose">
+
+    <h2 id="agreement">1. The agreement</h2>
+    <p>
+      These terms are between you and Jay Jeong, a sole trader registered in Victoria,
+      Australia (ABN 81 914 923 253), trading as Pawsby. Installing or using the app means
+      you accept them. If you don't, don't use the app.
+    </p>
+    <p>You need to be at least 16 to use Pawsby, and old enough to enter a contract where you live.</p>
+
+    <h2 id="licence">2. What you may do with the app</h2>
+    <p>
+      You get a personal, non-exclusive, non-transferable licence to install and run Pawsby
+      on devices you control. The software and its artwork stay ours.
+    </p>
+    <p>Please don't:</p>
+    <ul>
+      <li>resell, sublicense or redistribute the app</li>
+      <li>reverse engineer it except where the law says you may</li>
+      <li>pull out our API keys, or route your own traffic through our servers from outside the app</li>
+      <li>strip out or work around the subscription checks</li>
+    </ul>
+
+    <h2 id="plans">3. Plans, trials and billing</h2>
+    <p>
+      The app is free to download and the pet works without a subscription — it just won't
+      talk. AI chat, web search, calendar reminders and sync need a paid plan.
+    </p>
+    <table>
+      <tr><th>Plan</th><th>Monthly</th><th>Yearly</th><th>AI chats</th></tr>
+      <tr><td>Standard</td><td>$5</td><td>$50</td><td>50 per day</td></tr>
+      <tr><td>Pro</td><td>$10</td><td>$100</td><td>Unlimited</td></tr>
+    </table>
+    <p>
+      Prices are in US dollars. Payment is handled by <b>Creem</b>, which acts as merchant of
+      record and takes care of applicable taxes; their terms also apply to the transaction.
+    </p>
+    <p>
+      Every plan starts with a <b>3-day free trial</b>. Unless you cancel before it ends, the
+      trial converts into a paid subscription at the price shown at checkout, and renews
+      automatically each month or year until you cancel. Fair use limits apply: requests are
+      rate limited, and Standard has a daily message cap that resets at midnight UTC.
+    </p>
+
+    <h2 id="refunds">4. Cancelling and refunds</h2>
+    <p>
+      <b>Cancelling</b> stops the next charge. You keep everything you paid for until the end
+      of the current period — we don't cut you off the moment you cancel. After that the app
+      falls back to the free plan and your local chat history stays where it is.
+    </p>
+    <p>
+      <b>Refunds.</b> Subscription fees are non-refundable. The 3-day free trial exists so you
+      can decide before paying anything, and cancelling always stops future charges.
+    </p>
+    <div class="callout">
+      This does not limit rights you have by law. If you're a consumer in the EU, EEA or the
+      UK you may have a statutory right of withdrawal, and under the Australian Consumer Law
+      you have guarantees that cannot be excluded — including a remedy if the app is faulty
+      or doesn't do what we said it does. Nothing here overrides that. Ask us and we'll honour it.
     </div>
+    <p>
+      If you subscribed through the Apple App Store or Google Play, refunds are handled by
+      that store under its own rules, not by us.
+    </p>
+    <p>Billed twice, or charged after cancelling? Email <a href="mailto:hello@pawsby.app">hello@pawsby.app</a> and we'll sort it out.</p>
 
-    <h1>Terms of Service</h1>
-    <p class="updated">Last updated: July 9, 2026</p>
+    <h2 id="ai">5. AI answers</h2>
+    <p>
+      Your pet's replies are generated by a language model. They can be wrong, out of date,
+      or confidently invented. Treat them as a companion talking, not as advice — don't rely
+      on them for medical, legal, financial or safety decisions, and check anything that matters.
+    </p>
+    <p>
+      You own what you type. You're responsible for it, and for what you do with what comes back.
+    </p>
 
-    <p>These terms govern your use of Pawsby, a desktop application operated by a sole trader based in Victoria, Australia (ABN 81 914 923 253). By using Pawsby, you agree to these terms.</p>
+    <h2 id="byok">6. Using your own API key</h2>
+    <p>
+      Paid plans let you point the app at your own OpenRouter, Anthropic, OpenAI or Groq key.
+      When you do, requests go from your machine to that provider directly. You pay them, their
+      terms and rate limits govern those requests, and our daily caps don't apply. Your key is
+      encrypted on your device and never sent to us — which also means we can't recover it if
+      you lose the device.
+    </p>
 
-    <h2>1. Minimum age</h2>
-    <p>Pawsby is intended for users aged 16 and over. We do not knowingly offer the service to anyone under 16, and there is no option for parental consent on their behalf. If you believe a user under 16 is using Pawsby, contact us and we'll take appropriate action.</p>
+    <h2 id="use">7. Acceptable use</h2>
+    <p>Don't use Pawsby to generate or pursue anything illegal, to harass anyone, to produce sexual content involving minors, to attack systems, or to attempt to break our rate limits and quotas. We may suspend accounts doing any of this.</p>
 
-    <h2>2. The service</h2>
-    <p>Pawsby is a desktop companion app featuring an animated pet, AI chat, calendar reminders, and optional cloud sync. Some features are free; others require a paid subscription.</p>
+    <h2 id="availability">8. Availability and changes</h2>
+    <p>
+      Pawsby depends on services we don't run — model providers, search, payments, hosting. It
+      may be unavailable, and we don't promise uptime. We may change features, and we may swap
+      the underlying AI model when a better or cheaper one appears; where a plan names a model,
+      we'll update the site if that changes.
+    </p>
+    <p>
+      If we change prices, existing subscribers get notice by email before it takes effect and
+      can cancel first.
+    </p>
 
-    <h2>3. Subscriptions &amp; billing</h2>
-    <ul>
-      <li>Subscriptions are billed on a recurring basis (monthly, unless stated otherwise) through Creem, our payment processor and merchant of record.</li>
-      <li>You can cancel anytime from Settings. Cancelling stops future billing — <strong>you keep access to your paid plan for the remainder of the period you've already paid for.</strong></li>
-      <li><strong>We do not offer refunds</strong> for partial billing periods. This does not limit any consumer guarantee you're entitled to under the Australian Consumer Law, which cannot be excluded by these terms.</li>
-      <li>Prices may change with notice; continued use after a price change means you accept the new price.</li>
-    </ul>
+    <h2 id="liability">9. Warranties and liability</h2>
+    <p>
+      Except for guarantees that can't legally be excluded, Pawsby is provided as is, without
+      warranty of any kind. We're not liable for indirect or consequential loss — lost profit,
+      lost data, a meeting you missed because a reminder didn't fire. Where liability can't be
+      excluded, it's limited to the greater of the amount you paid us in the previous 12 months
+      or, where the Australian Consumer Law applies, resupplying the service or paying the cost
+      of having it resupplied.
+    </p>
+    <p>Keep your own backups of anything you care about.</p>
 
-    <h2>4. Bring Your Own Key (BYOK)</h2>
-    <p>If you provide your own AI provider API key, you are responsible for all usage costs charged by that provider. Pawsby is not responsible for charges, rate limits, or content returned by third-party AI providers you connect directly.</p>
+    <h2 id="ending">10. Ending the agreement</h2>
+    <p>
+      You can stop any time: cancel the subscription, uninstall, and optionally erase your
+      account at <a href="/delete-account">pawsby.app/delete-account</a>. We may suspend or
+      end your access if you breach these terms or if we have to stop offering the service —
+      in which case we'll refund any period you've paid for but can't use.
+    </p>
 
-    <h2>5. Acceptable use</h2>
-    <p>You agree not to:</p>
-    <ul>
-      <li>Use Pawsby for anything illegal, or to generate content that harasses, exploits, or endangers others — especially minors</li>
-      <li>Attempt to reverse-engineer, decompile, or extract the AI models or backend systems Pawsby connects to</li>
-      <li>Abuse rate limits, share subscription access beyond the device limit for your plan, or resell access to Pawsby</li>
-      <li>Use the calendar or sync features to store or transmit content that violates someone else's rights</li>
-    </ul>
-
-    <h2>6. AI-generated content</h2>
-    <p>Pawsby's pet chat is powered by third-party AI models. Responses are generated automatically and may be inaccurate, incomplete, or inappropriate at times. Don't rely on Pawsby for medical, legal, financial, or safety-critical advice.</p>
-
-    <h2>7. Your content</h2>
-    <p>You own your chat messages and any custom pet content you create. By using optional Cloud Sync, you allow us to store an encrypted copy so it can sync across your devices — we cannot read its contents.</p>
-
-    <h2>8. Termination</h2>
-    <p>You can stop using Pawsby and delete your account anytime at <a href="https://pawsby.app/delete-account">pawsby.app/delete-account</a>. We may suspend or terminate access for violations of these terms, including abuse of the service or non-payment.</p>
-
-    <h2>9. Disclaimers &amp; liability</h2>
-    <p>Pawsby is provided "as is," without warranties of any kind beyond those that cannot be excluded under the Australian Consumer Law. To the maximum extent permitted by law, we are not liable for indirect, incidental, or consequential damages arising from your use of the service.</p>
-
-    <h2>10. Governing law</h2>
-    <p>These terms are governed by the laws of Victoria, Australia. Any disputes will be handled in the courts of Victoria, Australia, without prejudice to any consumer rights you may have under the Australian Consumer Law.</p>
-
-    <h2>11. Changes to these terms</h2>
-    <p>If we make material changes, subscribers will be notified by email, and all users will see a notice in the app. The "Last updated" date above always reflects the most current version.</p>
+    <h2 id="law">11. Governing law</h2>
+    <p>
+      These terms are governed by the laws of Victoria, Australia, and disputes go to the
+      courts of Victoria — without taking away any right you have to bring a claim where you
+      live. If a clause turns out to be unenforceable, the rest still stands.
+    </p>
 
     <h2>12. Contact</h2>
-    <p>Questions about these terms? Email <a href="mailto:support@pawsby.app">support@pawsby.app</a>.</p>
+    <p><a href="mailto:hello@pawsby.app">hello@pawsby.app</a></p>
 
-    <footer>
-      Pawsby is operated by a sole trader (ABN 81 914 923 253), Victoria, Australia.
-    </footer>
   </div>
+</main>
+
+<footer class="foot">
+  <div class="wrap-narrow foot-row">
+    <span><a href="/">← Pawsby</a></span>
+    <span><a href="/privacy">Privacy</a> · <a href="/delete-account">Delete account</a> · <a href="mailto:hello@pawsby.app">hello@pawsby.app</a></span>
+  </div>
+</footer>
+
 </body>
 </html>
