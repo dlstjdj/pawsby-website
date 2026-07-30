@@ -31,7 +31,7 @@
       within a moment.
     </p>
 
-    <a class="btn btn-block" id="open" href="pawsby://subscription/success" style="margin-top:22px">
+    <a class="btn btn-block" id="open" href="pawsby://subscription/refresh" style="margin-top:22px">
       Open Pawsby
     </a>
 
@@ -52,6 +52,11 @@
 </div>
 
 <script>
+  // The app's deep-link handler listens for pawsby://subscription/refresh — do not
+  // change this path without changing lib.rs. (SPEC-roadmap.md names a different path for this — it is wrong; the shipped
+  // page has always used /refresh, and lib.rs matches on that.)
+  // No parameters are passed: the app re-checks the subscription server-side on wake.
+  //
   // Nudge the desktop app once. Browsers block this if the user hasn't interacted
   // with the page, which is exactly why the button above stays visible.
   setTimeout(function(){
