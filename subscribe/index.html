@@ -12,7 +12,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Public+Sans:wght@400;500;600&family=Silkscreen&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/pawsby.css">
 <style>
-  .plans{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:14px;padding-top:74px}
+  .plans{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:14px;padding-top:86px}
 
   .plan{
     display:block;position:relative;cursor:pointer;background:var(--card);
@@ -32,7 +32,7 @@
 
   /* the cat sits on whichever card is chosen, and walks over when you switch */
   .cat{
-    --iw:80px; --ih:70px; --ww:135px; --wh:80px; --strip:675px;
+    --iw:79px; --ih:78px; --ww:112px; --wh:66px; --strip:560px;
     position:absolute;top:0;left:0;width:var(--iw);height:var(--ih);
     background:url('/sprites/russian_blue-idle.png') 0 0/100% 100% no-repeat;
     image-rendering:pixelated;pointer-events:none;
@@ -51,7 +51,7 @@
   .breeds img{height:52px;width:auto}
 
   @media (max-width:600px){
-    .plans{grid-template-columns:1fr;gap:68px;padding-top:74px}
+    .plans{grid-template-columns:1fr;gap:80px;padding-top:86px}
     .breeds{gap:16px}
     .breeds img{height:42px}
   }
@@ -182,16 +182,16 @@
   function moveCat(animate){
     const card = cards.find(c => c.dataset.tier === tier);
     if(!card) return;
-    const w    = cat.classList.contains('walking') ? 135 : 80;
+    const w    = cat.classList.contains('walking') ? 112 : 79;
     const to   = card.offsetLeft + card.offsetWidth/2 - w/2;
-    const up   = card.offsetTop - 68;
+    const up   = card.offsetTop - 76;
     const from = parseFloat(cat.style.left);
 
     if(animate && !isNaN(from) && Math.abs(from - to) > 2){
       cat.classList.toggle('flip', to < from);
       cat.classList.add('walking');
-      cat.style.left = (card.offsetLeft + card.offsetWidth/2 - 135/2) + 'px';
-      cat.style.top  = (card.offsetTop - 78) + 'px';
+      cat.style.left = (card.offsetLeft + card.offsetWidth/2 - 112/2) + 'px';
+      cat.style.top  = (card.offsetTop - 64) + 'px';
       clearTimeout(catTimer);
       catTimer = setTimeout(() => {
         cat.classList.remove('walking','flip');
