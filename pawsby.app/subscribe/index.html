@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Choose a plan — Pawsby</title>
+<meta name="description" content="Wake up your desktop cat. Standard or Pro, monthly or yearly, 3 days free.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Public+Sans:wght@400;500;600&family=Silkscreen&display=swap" rel="stylesheet">
+<style>
+  :root{
+    /* Palette pulled from the sprite artwork, not a template.
+       --eye is the British Shorthair's eye blue; --collar is the cushion red. */
+    --paper:#EEF0F2;
+    --card:#FFFFFF;
+    --ink:#1B1F24;
+    --slate:#6B7480;
+    --hair:#D8DCE0;
+    --eye:#2E8FD4;
+    --eye-deep:#1F6EA8;
+    --collar:#C0392B;
+    --grass:#3E8E5A;
+
+    --display:'Bricolage Grotesque',system-ui,sans-serif;
+    --body:'Public Sans',system-ui,sans-serif;
+    --pixel:'Silkscreen',monospace;
+
+    /* Sprite scale — source frames are 1:1 pixel art, one factor keeps both poses
+       at the same visual size. Idle 201x175, walk frame 337x199 (strip 5x). */
+    --cat-idle-w:80px;  --cat-idle-h:70px;
+    --cat-walk-w:135px; --cat-walk-h:80px;
+    --cat-strip-w:675px;
+  }
+
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--body);
+    font-size:15px;
+    line-height:1.55;
+    /* faint desk grid — the surface the cat lives on */
+    background-image:
+      linear-gradient(to right,rgba(27,31,36,.035) 1px,transparent 1px),
+      linear-gradient(to bottom,rgba(27,31,36,.035) 1px,transparent 1px);
+    background-size:22px 22px;
+  }
+
+  .wrap{max-width:760px;margin:0 auto;padding:28px 20px 64px}
+
+  /* ── masthead ─────────────────────────────────────────── */
+  .top{display:flex;align-items:center;justify-content:space-between;margin-bottom:52px}
+  .brand{display:flex;align-items:center;gap:9px;text-decoration:none;color:var(--ink)}
+  .brand img{width:22px;height:22px;image-rendering:pixelated}
+  .brand span{font-family:var(--display);font-weight:800;font-size:17px;letter-spacing:-.02em}
+  .eyebrow{font-family:var(--pixel);font-size:10px;letter-spacing:.06em;color:var(--slate);text-transform:uppercase}
+
+  /* ── headline ─────────────────────────────────────────── */
+  .lede{margin-bottom:38px}
+  .lede h1{
+    font-family:var(--display);
+    font-weight:800;
+    font-size:clamp(30px,6vw,46px);
+    line-height:1.04;
+    letter-spacing:-.035em;
+    margin:10px 0 12px;
+  }
+  .lede h1 em{font-style:normal;color:var(--eye-deep)}
+  .lede p{margin:0;color:var(--slate);max-width:46ch}
+
+  /* ── billing toggle ───────────────────────────────────── */
+  .period{display:flex;align-items:center;gap:12px;margin-bottom:16px;flex-wrap:wrap}
+  .seg{display:inline-flex;background:var(--card);border:1.5px solid var(--hair);border-radius:9px;padding:3px;gap:3px}
+  .seg button{
+    font-family:var(--body);font-size:13px;font-weight:600;
+    border:0;background:transparent;color:var(--slate);
+    padding:6px 14px;border-radius:6px;cursor:pointer;
+  }
+  .seg button[aria-pressed="true"]{background:var(--ink);color:#fff}
+  .seg button:focus-visible{outline:2px solid var(--eye);outline-offset:2px}
+  .save{font-family:var(--pixel);font-size:10px;color:var(--grass);letter-spacing:.04em}
+
+  /* ── plans ────────────────────────────────────────────── */
+  .plans{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:14px;padding-top:74px}
+
+  .plan{
+    display:block;position:relative;text-align:left;cursor:pointer;
+    background:var(--card);border:1.5px solid var(--hair);border-radius:12px;
+    padding:20px 20px 22px;font-family:var(--body);color:var(--ink);
+    transition:border-color .18s,box-shadow .18s,transform .18s;
+  }
+  .plan:hover{border-color:#BFC6CC}
+  .plan:has(input:checked){border-color:var(--ink);box-shadow:0 2px 0 var(--ink)}
+  .plan:has(input:focus-visible){outline:2px solid var(--eye);outline-offset:3px}
+  .plan input{position:absolute;opacity:0;width:1px;height:1px;margin:0;pointer-events:none}
+
+  .plan .tag{font-family:var(--pixel);font-size:10px;letter-spacing:.08em;color:var(--slate);text-transform:uppercase}
+  .plan:has(input:checked) .tag{color:var(--eye-deep)}
+  .plan .price{font-family:var(--display);font-weight:800;font-size:34px;letter-spacing:-.03em;margin:6px 0 2px}
+  .plan .price i{font-family:var(--pixel);font-style:normal;font-size:11px;font-weight:400;color:var(--slate);letter-spacing:.02em;margin-left:3px}
+  .plan .note{font-size:12.5px;color:var(--slate);min-height:1.6em}
+  .plan ul{list-style:none;margin:16px 0 0;padding:0;border-top:1px solid var(--hair);padding-top:14px}
+  .plan li{font-size:13.5px;padding:3.5px 0 3.5px 17px;position:relative}
+  .plan li::before{content:"";position:absolute;left:0;top:11px;width:6px;height:6px;background:var(--hair)}
+  .plan:has(input:checked) li::before{background:var(--eye)}
+  .plan li b{font-weight:600}
+
+  /* ── the cat: sits on the chosen card, walks when you switch ── */
+  .cat{
+    position:absolute;top:0;left:0;
+    width:var(--cat-idle-w);height:var(--cat-idle-h);
+    background-image:url('/sprites/russian_blue-idle.png');
+    background-size:100% 100%;
+    background-repeat:no-repeat;
+    image-rendering:pixelated;
+    transition:left .68s cubic-bezier(.42,0,.4,1),top .68s cubic-bezier(.42,0,.4,1);
+    pointer-events:none;
+  }
+  .cat.walking{
+    width:var(--cat-walk-w);height:var(--cat-walk-h);
+    background-image:url('/sprites/russian_blue-walk.png');
+    background-size:var(--cat-strip-w) 100%;
+    animation:step .5s steps(5) infinite;
+  }
+  .cat.flip{transform:scaleX(-1)}
+  @keyframes step{from{background-position:0 0}to{background-position:calc(-1 * var(--cat-strip-w)) 0}}
+
+  /* ── checkout ─────────────────────────────────────────── */
+  .checkout{margin-top:26px;background:var(--card);border:1.5px solid var(--hair);border-radius:12px;padding:22px}
+  label{display:block;font-family:var(--pixel);font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--slate);margin-bottom:7px}
+  input[type=email]{
+    width:100%;font-family:var(--body);font-size:15px;color:var(--ink);
+    padding:11px 13px;border:1.5px solid var(--hair);border-radius:9px;background:#fff;
+  }
+  input[type=email]:focus{outline:2px solid var(--eye);outline-offset:-1px;border-color:var(--eye)}
+  input[type=email].bad{border-color:var(--collar)}
+  .hint{font-size:12.5px;color:var(--slate);margin:9px 0 0}
+  .err{font-size:13px;color:var(--collar);margin:9px 0 0;display:none}
+  .err.show{display:block}
+  .err a{color:var(--collar)}
+
+  .go{
+    width:100%;margin-top:16px;
+    font-family:var(--display);font-weight:600;font-size:16px;letter-spacing:-.01em;
+    color:#fff;background:var(--ink);border:0;border-radius:9px;
+    padding:14px;cursor:pointer;transition:background .16s;
+  }
+  .go:hover{background:#2C333B}
+  .go:focus-visible{outline:2px solid var(--eye);outline-offset:2px}
+  .go[disabled]{background:var(--slate);cursor:progress}
+
+  .terms{font-size:12px;color:var(--slate);margin:14px 0 0;line-height:1.5}
+  .terms a{color:var(--slate)}
+
+  /* ── breeds strip ─────────────────────────────────────── */
+  .breeds{margin-top:38px;text-align:center}
+  .breeds .row{display:flex;justify-content:center;align-items:flex-end;gap:26px;margin-top:12px}
+  .breeds img{height:52px;width:auto;image-rendering:pixelated}
+
+  footer{margin-top:46px;text-align:center;font-size:12px;color:var(--slate)}
+  footer a{color:var(--slate)}
+
+  @media (max-width:600px){
+    .plans{grid-template-columns:1fr;gap:68px;padding-top:74px}
+    .breeds .row{gap:16px}
+    .breeds img{height:42px}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .cat{transition:none}
+    .cat.walking{animation:none}
+    .plan{transition:none}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="top">
+    <a class="brand" href="/"><img src="/favicon.png" alt=""><span>Pawsby</span></a>
+    <span class="eyebrow">Choose a plan</span>
+  </div>
+
+  <div class="lede">
+    <span class="eyebrow">Your cat is asleep</span>
+    <h1>Pick a plan and <em>wake it up.</em></h1>
+    <p>Three days free on every plan. Cancel any time — your cat keeps walking on the free plan.</p>
+  </div>
+
+  <div class="period">
+    <div class="seg" role="group" aria-label="Billing period">
+      <button type="button" id="mo" aria-pressed="true">Monthly</button>
+      <button type="button" id="yr" aria-pressed="false">Yearly</button>
+    </div>
+    <span class="save" id="save" hidden>Save 17%</span>
+  </div>
+
+  <div class="plans">
+    <div class="cat" id="cat" aria-hidden="true"></div>
+
+    <label class="plan" data-tier="standard">
+      <input type="radio" name="tier" value="standard" checked>
+      <span class="tag">Standard</span>
+      <div class="price" data-price>$5<i>/month</i></div>
+      <p class="note" data-note>Billed monthly</p>
+      <ul>
+        <li><b>50 AI chats</b> a day</li>
+        <li>GPT-5 Mini</li>
+        <li>Web search</li>
+        <li>Calendar reminders</li>
+        <li>Sync <b>2 devices</b></li>
+        <li>Use your own API key</li>
+      </ul>
+    </label>
+
+    <label class="plan" data-tier="pro">
+      <input type="radio" name="tier" value="pro">
+      <span class="tag">Pro</span>
+      <div class="price" data-price>$10<i>/month</i></div>
+      <p class="note" data-note>Billed monthly</p>
+      <ul>
+        <li><b>Unlimited</b> AI chats</li>
+        <li>Claude Haiku 4.5</li>
+        <li>Web search</li>
+        <li>Calendar reminders</li>
+        <li>Sync <b>every device</b></li>
+        <li>Use your own API key</li>
+      </ul>
+    </label>
+  </div>
+
+  <div class="checkout">
+    <label for="email">Email</label>
+    <input type="email" id="email" placeholder="you@example.com" autocomplete="email" inputmode="email">
+    <p class="hint" id="hint">3 days free, then $5/month. We'll use this to manage your subscription.</p>
+    <p class="err" id="err"></p>
+    <button type="button" class="go" id="go">Start free trial</button>
+    <p class="terms">
+      Payment is handled by Creem. By continuing you agree to the
+      <a href="/terms">Terms of Service</a> and <a href="/privacy">Privacy Policy</a>.
+    </p>
+  </div>
+
+  <div class="breeds">
+    <span class="eyebrow">Four breeds, every plan</span>
+    <div class="row">
+      <img src="/sprites/russian_blue-idle.png" alt="Russian Blue">
+      <img src="/sprites/abyssinian-idle.png" alt="Abyssinian">
+      <img src="/sprites/british_shorthair-idle.png" alt="British Shorthair">
+      <img src="/sprites/persian-idle.png" alt="Persian">
+    </div>
+  </div>
+
+  <footer>
+    <a href="/">← Back to Pawsby</a> · <a href="mailto:hello@pawsby.app">hello@pawsby.app</a>
+  </footer>
+</div>
+
+<script>
+(function(){
+  'use strict';
+
+  const SUPABASE_URL  = 'https://zptbmngvcesbqfravbdz.supabase.co';
+  const SUPABASE_ANON = '__SUPABASE_ANON_KEY__';
+
+  const PLANS = {
+    standard:{
+      monthly:{id:'prod_3b9URAptecYBhjOFTcdpkN', price:5,  unit:'/month', note:'Billed monthly'},
+      yearly: {id:'prod_6qVZypvsPom2JPtpkFyfG0', price:50, unit:'/year',  note:'$4.17/month, billed yearly'}
+    },
+    pro:{
+      monthly:{id:'prod_4VzGl8xs02KABCk28ktzOW', price:10,  unit:'/month', note:'Billed monthly'},
+      yearly: {id:'prod_5m9aVeQc9i2LlVQ0HH1VFp', price:100, unit:'/year',  note:'$8.33/month, billed yearly'}
+    }
+  };
+
+  // The app opens this page with ?account=<local_account_id> so the purchase
+  // links straight back to that install. Bought straight from the web instead?
+  // Mint an id here — the app claims it later with the same email via Restore.
+  const params  = new URLSearchParams(location.search);
+  const fromApp = (params.get('account') || '').trim();
+  const account = fromApp || (crypto.randomUUID ? crypto.randomUUID()
+                                                : String(Date.now()) + Math.random().toString(16).slice(2));
+
+  let period = 'monthly';
+  let tier    = 'standard';
+
+  const $      = (s) => document.querySelector(s);
+  const cards  = Array.from(document.querySelectorAll('.plan'));
+  const cat    = $('#cat');
+  const hint   = $('#hint');
+  const errBox = $('#err');
+  const email  = $('#email');
+  const go     = $('#go');
+
+  /* ── the cat walks to whichever card is chosen ─────────── */
+  let catTimer;
+  function moveCat(animate){
+    const card = cards.find(c => c.dataset.tier === tier);
+    if(!card) return;
+    const w  = cat.classList.contains('walking') ? 135 : 80;
+    const to = card.offsetLeft + card.offsetWidth/2 - w/2;
+    const up = card.offsetTop - 68;
+    const from = parseFloat(cat.style.left);
+
+    if(animate && !isNaN(from) && Math.abs(from - to) > 2){
+      cat.classList.toggle('flip', to < from);
+      cat.classList.add('walking');
+      const wide = card.offsetLeft + card.offsetWidth/2 - 135/2;
+      cat.style.left = wide + 'px';
+      cat.style.top  = (card.offsetTop - 78) + 'px';
+      clearTimeout(catTimer);
+      catTimer = setTimeout(() => {
+        cat.classList.remove('walking','flip');
+        cat.style.left = to + 'px';
+        cat.style.top  = up + 'px';
+      }, 700);
+    }else{
+      cat.style.left = to + 'px';
+      cat.style.top  = up + 'px';
+    }
+  }
+
+  /* ── render prices / notes / hint ──────────────────────── */
+  function render(){
+    cards.forEach(card => {
+      const p = PLANS[card.dataset.tier][period];
+      card.querySelector('[data-price]').innerHTML = '$' + p.price + '<i>' + p.unit + '</i>';
+      card.querySelector('[data-note]').textContent = p.note;
+      card.querySelector('input').checked = (card.dataset.tier === tier);
+    });
+    const sel = PLANS[tier][period];
+    hint.textContent = '3 days free, then $' + sel.price + sel.unit +
+                       ". We'll use this to manage your subscription.";
+    $('#mo').setAttribute('aria-pressed', String(period === 'monthly'));
+    $('#yr').setAttribute('aria-pressed', String(period === 'yearly'));
+    $('#save').hidden = period !== 'yearly';
+  }
+
+  function fail(msg){ errBox.innerHTML = msg; errBox.classList.add('show'); }
+  function clearFail(){ errBox.classList.remove('show'); email.classList.remove('bad'); }
+
+  cards.forEach(card => card.querySelector('input').addEventListener('change', () => {
+    if(card.dataset.tier === tier) return;
+    tier = card.dataset.tier;
+    render(); moveCat(true);
+  }));
+
+  $('#mo').addEventListener('click', () => { period = 'monthly'; render(); });
+  $('#yr').addEventListener('click', () => { period = 'yearly';  render(); });
+  email.addEventListener('input', clearFail);
+
+  go.addEventListener('click', async () => {
+    clearFail();
+    const addr = email.value.trim().toLowerCase();
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(addr)){
+      email.classList.add('bad');
+      fail('Enter an email address you can receive mail at.');
+      email.focus();
+      return;
+    }
+
+    const label = go.textContent;
+    go.disabled = true;
+    go.textContent = 'Opening checkout…';
+
+    try{
+      const res = await fetch(SUPABASE_URL + '/functions/v1/create-checkout', {
+        method:'POST',
+        headers:{ 'Authorization':'Bearer ' + SUPABASE_ANON, 'Content-Type':'application/json' },
+        body: JSON.stringify({
+          product_id: PLANS[tier][period].id,
+          local_account_id: account,
+          email: addr
+        })
+      });
+
+      if(res.status === 409){
+        fail('This email already has a subscription. Open Pawsby, go to ' +
+             'Settings → AI Settings, and choose <b>Restore subscription</b>.');
+        return;
+      }
+      if(!res.ok) throw new Error('http ' + res.status);
+
+      const data = await res.json();
+      if(!data.checkout_url) throw new Error('no url');
+      location.href = data.checkout_url;
+      return;
+    }catch(e){
+      fail("Checkout didn't open. Try again, or email " +
+           '<a href="mailto:hello@pawsby.app">hello@pawsby.app</a> if it keeps failing.');
+    }finally{
+      go.disabled = false;
+      go.textContent = label;
+    }
+  });
+
+  render();
+  moveCat(false);
+  window.addEventListener('resize', () => moveCat(false));
+  window.addEventListener('load',   () => moveCat(false));
+})();
+</script>
+</body>
+</html>
