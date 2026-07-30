@@ -1,94 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Subscription Activated — Pawsby</title>
-  <link rel="icon" type="image/png" href="/favicon.png">
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root {
-      --bg: #f5f5f7;
-      --card: #ffffff;
-      --text: #1c1c1e;
-      --sub: #636366;
-      --blue: #3B82F6;
-      --blue-dark: #2563eb;
-    }
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --bg: #1c1c1e;
-        --card: #2c2c2e;
-        --text: #f2f2f7;
-        --sub: #aeaeb2;
-      }
-    }
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      padding: 24px;
-    }
-    .card {
-      background: var(--card);
-      border-radius: 20px;
-      padding: 48px 40px;
-      text-align: center;
-      max-width: 380px;
-      width: 100%;
-      box-shadow: 0 4px 32px rgba(0,0,0,0.08);
-    }
-    .check-wrap {
-      width: 72px;
-      height: 72px;
-      border-radius: 50%;
-      background: #34c759;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 28px;
-    }
-    .check-wrap::after {
-      content: "";
-      display: block;
-      width: 14px;
-      height: 26px;
-      border: 4px solid #fff;
-      border-top: none;
-      border-left: none;
-      transform: rotate(45deg) translate(-1px, -4px);
-    }
-    h1 { font-size: 24px; font-weight: 700; margin-bottom: 12px; }
-    p  { font-size: 15px; color: var(--sub); line-height: 1.6; margin-bottom: 32px; }
-    .btn {
-      display: inline-block;
-      background: var(--blue);
-      color: #fff;
-      font-size: 15px;
-      font-weight: 600;
-      padding: 14px 32px;
-      border-radius: 12px;
-      text-decoration: none;
-      transition: background 0.15s;
-    }
-    .btn:hover { background: var(--blue-dark); }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>You're in — Pawsby</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Public+Sans:wght@400;500;600&family=Silkscreen&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/pawsby.css">
+<style>
+  .mid{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:30px 22px}
+  .box{max-width:440px;width:100%;text-align:center}
+  .wake{width:120px;margin:0 auto 4px;animation:hop 1.6s ease-in-out infinite}
+  @keyframes hop{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+  .steps{text-align:left;margin:22px 0 0}
+  .steps li{font-size:14px;margin:7px 0;color:#33383F}
+</style>
 </head>
 <body>
-  <div class="card">
-    <div class="check-wrap"></div>
-    <h1>Subscription Activated! 🎉</h1>
-    <p>Your Pawsby subscription is now active.<br>You can close this window.</p>
-    <a class="btn" href="pawsby://subscription/refresh">Open Pawsby</a>
+
+<div class="mid">
+  <div class="box">
+    <img class="sprite wake" src="/sprites/russian_blue-idle.png" alt="">
+    <span class="eyebrow">Payment complete</span>
+    <h1 style="font-size:clamp(27px,5vw,38px);margin-top:8px">Your cat is awake.</h1>
+    <p class="lead" style="margin-left:auto;margin-right:auto;font-size:16px">
+      Your trial has started. Head back to Pawsby and it'll pick up the subscription
+      within a moment.
+    </p>
+
+    <a class="btn btn-block" id="open" href="pawsby://subscription/success" style="margin-top:22px">
+      Open Pawsby
+    </a>
+
+    <div class="card" style="margin-top:22px;text-align:left">
+      <span class="eyebrow">If nothing happens</span>
+      <ol class="steps">
+        <li>Switch to the Pawsby window yourself — it checks for a new subscription every few minutes.</li>
+        <li>Still on the free plan after that? Open <b>Settings → AI Settings</b> and choose <b>Restore subscription</b>, then enter this same email.</li>
+        <li>Haven't installed it yet? <a href="/">Download Pawsby</a> and use Restore subscription after setup.</li>
+      </ol>
+    </div>
+
+    <p class="hint">
+      A receipt is on its way from Creem. Questions:
+      <a href="mailto:hello@pawsby.app">hello@pawsby.app</a>
+    </p>
   </div>
-  <script>
-    setTimeout(function() {
-      window.location.href = "pawsby://subscription/refresh";
-    }, 300);
-  </script>
+</div>
+
+<script>
+  // Nudge the desktop app once. Browsers block this if the user hasn't interacted
+  // with the page, which is exactly why the button above stays visible.
+  setTimeout(function(){
+    try { window.location.href = document.getElementById('open').href; } catch (e) {}
+  }, 700);
+</script>
 </body>
 </html>
