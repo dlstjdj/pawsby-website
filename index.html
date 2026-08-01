@@ -102,6 +102,7 @@
   /* 4 links + a button don't fit a phone header — keep Pricing and the CTA */
   @media (max-width:620px){
     .nav-links a[href="#features"],
+    .nav-links a[href="#faq"],
     .nav-links a[href="#roadmap"]{display:none}
   }
   @media (max-width:860px){
@@ -120,6 +121,7 @@
     <div class="nav-links">
       <a href="#features">Features</a>
       <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
       <a href="#roadmap">Roadmap</a>
       <a class="btn" style="padding:9px 16px;font-size:14px" href="#get">Get Pawsby</a>
     </div>
@@ -249,7 +251,7 @@
       <p class="plan-sub" data-sub="standard">Billed monthly</p>
       <ul class="ticks">
         <li><b>50 AI chats</b> a day</li>
-        <li>GPT-5 Mini</li>
+        <li>Fast, natural conversation</li>
         <li>Web search</li>
         <li>Calendar reminders</li>
         <li>Sync <b>2 devices</b></li>
@@ -264,7 +266,7 @@
       <p class="plan-sub" data-sub="pro">Billed monthly</p>
       <ul class="ticks">
         <li><b>Unlimited</b> AI chats</li>
-        <li>Claude Haiku 4.5</li>
+        <li><b>Smarter</b> model, follows long chats</li>
         <li>Web search</li>
         <li>Calendar reminders</li>
         <li>Sync <b>every device</b></li>
@@ -278,6 +280,45 @@
     Every paid plan starts with a 3-day free trial. Cancel any time and you keep access
     until the period ends — see <a href="/terms#refunds">refunds</a>.
   </p>
+</section>
+
+<!-- ── faq ──────────────────────────────────────────────── -->
+<section class="wrap section" id="faq">
+  <span class="eyebrow">Questions</span>
+  <h2>Before you ask</h2>
+
+  <div class="grid g2" style="margin-top:26px">
+    <div class="card">
+      <h3>Which AI does it use?</h3>
+      <p class="muted" style="margin:0;font-size:14px">
+        Standard runs on GPT-4o mini, Pro on Claude Haiku 4.5. We swap these for better
+        models as they appear — the plan is the promise, not a particular vendor.
+        Prefer your own? Any paid plan lets you plug in your own API key.
+      </p>
+    </div>
+    <div class="card">
+      <h3>Can it read my screen or files?</h3>
+      <p class="muted" style="margin:0;font-size:14px">
+        No. It sees what you type and, if you connect a calendar, your upcoming events.
+        Nothing else.
+      </p>
+    </div>
+    <div class="card">
+      <h3>What happens if I cancel?</h3>
+      <p class="muted" style="margin:0;font-size:14px">
+        You keep everything until the period you paid for ends, then the cat drops back
+        to the free plan and keeps walking. Your chat history stays on your machine.
+      </p>
+    </div>
+    <div class="card">
+      <h3>Is my conversation private?</h3>
+      <p class="muted" style="margin:0;font-size:14px">
+        History lives in an encrypted database on your computer. Sync is off unless you
+        turn it on, and when it's on we only ever hold ciphertext we can't read.
+        <a href="/privacy">Full details</a>.
+      </p>
+    </div>
+  </div>
 </section>
 
 <!-- ── roadmap ──────────────────────────────────────────── -->
