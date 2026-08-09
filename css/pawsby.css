@@ -41,10 +41,10 @@ a{color:var(--eye-deep)}
 ::selection{background:#CFE4F5}
 
 /* ── layout ─────────────────────────────────────────────── */
-.wrap{max-width:1040px;margin:0 auto;padding:0 22px}
-.wrap-narrow{max-width:720px;margin:0 auto;padding:0 22px}
-.section{padding:76px 0}
-.section-tight{padding:44px 0}
+.wrap{max-width:1040px;margin:0 auto;padding-left:max(22px,env(safe-area-inset-left));padding-right:max(22px,env(safe-area-inset-right))}
+.wrap-narrow{max-width:720px;margin:0 auto;padding-left:max(22px,env(safe-area-inset-left));padding-right:max(22px,env(safe-area-inset-right))}
+.section{padding-top:76px;padding-bottom:76px}
+.section-tight{padding-top:44px;padding-bottom:44px}
 
 /* ── type ───────────────────────────────────────────────── */
 .eyebrow{
@@ -155,7 +155,7 @@ input.bad{border-color:var(--collar)}
 /* ── responsive ─────────────────────────────────────────── */
 @media (max-width:760px){
   .g2,.g3{grid-template-columns:1fr}
-  .section{padding:52px 0}
+  .section{padding-top:52px;padding-bottom:52px}
   .nav-links{gap:14px}
   .nav-links a{font-size:13px}
 }
