@@ -20,7 +20,19 @@
   /* ── hero ───────────────────────────────────────────── */
   .hero{padding-top:36px;padding-bottom:8px}
   .hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:center}
-  .waitlist{margin-top:26px;max-width:400px}
+  .dl{margin-top:28px}
+  .dl-row{display:flex;gap:10px;flex-wrap:wrap;align-items:stretch}
+  .btn-dl{
+    display:inline-flex;flex-direction:column;align-items:flex-start;gap:1px;
+    padding:12px 22px 11px;line-height:1.25;
+  }
+  .btn-dl small{
+    font-family:var(--pixel);font-weight:400;font-size:9px;letter-spacing:.06em;
+    opacity:.72;text-transform:uppercase;
+  }
+  .dl-alt{font-size:13px;color:var(--slate);margin:12px 0 0}
+  .dl-alt a{color:var(--slate)}
+  .dl-alt a:hover{color:var(--ink)}
   .platforms{font-family:var(--pixel);font-size:10px;letter-spacing:.06em;color:var(--slate);margin-top:14px}
 
   /* the mock desktop window the cat patrols */
@@ -152,21 +164,28 @@
 <header class="wrap hero">
   <div class="hero-grid">
     <div>
-      <span class="eyebrow">Now in development</span>
+      <span class="eyebrow">Free download · Windows &amp; macOS</span>
       <h1>Click the cat.<br>Get a <span class="accent">real answer.</span></h1>
       <p class="lead">
         A pixel cat sits on your desktop. Click it and you're talking to a proper
         AI — no tab, no login, no waiting. Three chats a day free, $5 a month for fifty.
       </p>
 
-      <div class="waitlist" id="get">
-        <label for="wl">Get notified at launch</label>
-        <div class="row-inline">
-          <input type="email" id="wl" placeholder="you@example.com" autocomplete="email">
-          <button class="btn" id="wl-go" style="padding:11px 20px;font-size:15px">Notify me</button>
+      <div class="dl" id="get">
+        <div class="dl-row">
+          <a class="btn btn-dl" id="dl-main" href="https://github.com/dlstjdj/pawsby-releases/releases/latest/download/Pawsby-windows_setup.exe">
+            Download for Windows
+            <small>Windows 10 &amp; 11 · 64-bit</small>
+          </a>
+          <a class="btn-ghost btn-dl" id="dl-other" href="https://github.com/dlstjdj/pawsby-releases/releases/latest/download/Pawsby-macos.dmg">
+            Download for macOS
+            <small>Apple silicon &amp; Intel</small>
+          </a>
         </div>
-        <p class="msg" id="wl-msg"></p>
-        <p class="platforms">Windows · macOS · free to download</p>
+        <p class="dl-alt">
+          Free plan included, no account needed ·
+          <a href="https://github.com/dlstjdj/pawsby-releases/releases/latest">all versions</a>
+        </p>
       </div>
     </div>
 
@@ -376,8 +395,21 @@
 <script>
 (function(){
   'use strict';
-  const SUPABASE_URL  = 'https://zptbmngvcesbqfravbdz.supabase.co';
-  const SUPABASE_ANON = '__SUPABASE_ANON_KEY__';
+
+  /* ── download buttons: put the visitor's OS first ───── */
+  (function(){
+    const main  = document.getElementById('dl-main');
+    const other = document.getElementById('dl-other');
+    if(!main || !other) return;
+    const ua  = navigator.userAgent;
+    const mac = /Macintosh|Mac OS X/.test(ua) && !/like Mac/.test(ua); // excludes iOS UAs
+    if(mac){
+      // swap labels + hrefs so macOS becomes the solid primary button
+      const tmp = { html: main.innerHTML, href: main.getAttribute('href') };
+      main.innerHTML = other.innerHTML;  main.setAttribute('href', other.getAttribute('href'));
+      other.innerHTML = tmp.html;        other.setAttribute('href', tmp.href);
+    }
+  })();
 
   /* ── pricing toggle ─────────────────────────────────── */
   const P = {
@@ -397,51 +429,6 @@
   document.getElementById('mo').addEventListener('click', () => setPeriod('monthly'));
   document.getElementById('yr').addEventListener('click', () => setPeriod('yearly'));
 
-  /* ── waitlist ───────────────────────────────────────── */
-  const input = document.getElementById('wl');
-  const btn   = document.getElementById('wl-go');
-  const msg   = document.getElementById('wl-msg');
-
-  function say(text, kind){
-    msg.textContent = text;
-    msg.className = 'msg show ' + kind;
-  }
-
-  input.addEventListener('input', () => {
-    msg.className = 'msg';
-    input.classList.remove('bad');
-  });
-
-  btn.addEventListener('click', async () => {
-    const email = input.value.trim().toLowerCase();
-    if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)){
-      input.classList.add('bad');
-      say('Enter an email address you can receive mail at.', 'bad');
-      input.focus();
-      return;
-    }
-    const label = btn.textContent;
-    btn.disabled = true; btn.textContent = 'Adding…';
-    try{
-      const res = await fetch(SUPABASE_URL + '/functions/v1/waitlist-signup', {
-        method:'POST',
-        headers:{ 'Authorization':'Bearer ' + SUPABASE_ANON, 'Content-Type':'application/json' },
-        body: JSON.stringify({ email })
-      });
-      if(res.status === 400){
-        input.classList.add('bad');
-        say("That address didn't look valid to our server. Check it and try again.", 'bad');
-        return;
-      }
-      if(!res.ok) throw new Error('http ' + res.status);
-      input.value = '';
-      say("You're on the list. We'll email you the day it ships.", 'good');
-    }catch(e){
-      say('Something broke on our side. Email hello@pawsby.app and we\u2019ll add you by hand.', 'bad');
-    }finally{
-      btn.disabled = false; btn.textContent = label;
-    }
-  });
 })();
 </script>
 </body>
