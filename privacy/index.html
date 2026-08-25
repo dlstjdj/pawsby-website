@@ -46,7 +46,7 @@
       <tr><th>Data</th><th>Why</th><th>Where</th></tr>
       <tr>
         <td>Email address</td>
-        <td>Manage your subscription, send one-time codes, restore access on a new device, waitlist announcements</td>
+        <td>Manage your subscription, send one-time codes, restore access on a new device</td>
         <td>Supabase, Resend</td>
       </tr>
       <tr>
@@ -101,20 +101,29 @@
     <h2>4. Sending messages to an AI model</h2>
     <p>
       To answer you, the app sends your message, a short slice of recent conversation, and
-      your pet's persona to a model provider. Depending on your plan that provider is
-      reached through OpenRouter (which routes to OpenAI or Anthropic) or Groq. These
-      requests are relayed by our server so that our API keys are never shipped inside the
-      app; we don't store the message content in the process.
+      your pet's persona to a model provider, reached through OpenRouter, which routes to
+      OpenAI or Anthropic depending on your plan. These requests are relayed by our server
+      so that our API keys are never shipped inside the app; we don't store the message
+      content in the process.
     </p>
     <p>
-      When your question needs current information, the app sends a search query — not your
-      whole conversation — to Tavily, and briefly caches the result in Upstash Redis so the
-      same question doesn't get charged twice.
+      Deciding whether a question needs a web search happens in two steps. Most messages are
+      settled on your own machine by a keyword check that sends nothing anywhere. Only when
+      that is inconclusive is the message — up to the first 500 characters — passed to a small
+      model at Groq that replies with nothing but yes or no. When a search is needed, the app
+      sends a search query, not your whole conversation, to Tavily, and briefly caches the
+      result in Upstash Redis so the same question doesn't get charged twice.
     </p>
     <p>
       If you supply your own API key instead, requests go straight from your machine to the
       provider you chose and don't pass through us at all. That provider's own privacy terms
       apply to those requests.
+    </p>
+    <p>
+      Separately, when a conversation ends the app asks a model at Groq to condense it into a
+      sentence or two, so your pet can pick up where you left off next time. The recent
+      messages are sent for that one request and the summary comes back to your device; we
+      don't keep either.
     </p>
 
     <h2>5. Calendars</h2>
@@ -129,9 +138,11 @@
     <ul>
       <li><b>Supabase</b> — Tokyo, Japan (ap-northeast-1). Account records and encrypted sync rows.</li>
       <li><b>Upstash Redis</b> — rate-limit counters and short-lived search caches.</li>
-      <li><b>Resend</b> — sending one-time codes and launch email.</li>
+      <li><b>Resend</b> — sending one-time codes.</li>
       <li><b>Creem</b> — payment processing and invoices.</li>
-      <li><b>OpenRouter, Anthropic, OpenAI, Groq, Tavily</b> — transient request processing only.</li>
+      <li><b>OpenRouter</b> (routing to <b>OpenAI</b> or <b>Anthropic</b>) — generating your pet's replies.</li>
+      <li><b>Groq</b> — deciding whether a search is needed, and summarising a finished conversation.</li>
+      <li><b>Tavily</b> — web search. All four process requests in transit only.</li>
     </ul>
     <p>
       Because these providers operate internationally, your data may be processed outside
