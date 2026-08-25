@@ -90,7 +90,7 @@
       <p style="margin:6px 0 0;font-size:14.5px;color:#33383F" id="done-body"></p>
       <p class="hint" style="margin-top:12px">
         If a subscription is still active, cancel it so you aren't charged again —
-        email <a href="mailto:hello@pawsby.app">hello@pawsby.app</a> if you need help.
+        email <a href="mailto:support@pawsby.app">support@pawsby.app</a> if you need help.
       </p>
       <a class="btn-ghost btn-block" href="/" style="margin-top:16px">Back to Pawsby</a>
     </div>
@@ -98,7 +98,7 @@
   </div>
 
   <p class="hint">
-    Prefer to have a person do it? Email <a href="mailto:hello@pawsby.app">hello@pawsby.app</a>
+    Prefer to have a person do it? Email <a href="mailto:support@pawsby.app">support@pawsby.app</a>
     from the address on your account.
   </p>
 </main>
@@ -162,7 +162,7 @@
       show('s2');
       $('otp').focus();
     }catch(e){
-      say($('m1'), "Couldn't send the code. Try again, or email hello@pawsby.app.", 'bad');
+      say($('m1'), "Couldn't send the code. Try again, or email support@pawsby.app.", 'bad');
     }finally{
       $('send').disabled = false; $('send').textContent = label;
     }
@@ -197,10 +197,10 @@
       }else if(data.error === 'NO_ACCOUNT_FOUND'){
         say($('m2'), 'We hold no account for ' + address + '. There is nothing to delete.', 'bad');
       }else{
-        say($('m2'), "Something broke on our side. Try again, or email hello@pawsby.app.", 'bad');
+        say($('m2'), "Something broke on our side. Try again, or email support@pawsby.app.", 'bad');
       }
     }catch(e){
-      say($('m2'), "Something broke on our side. Try again, or email hello@pawsby.app.", 'bad');
+      say($('m2'), "Something broke on our side. Try again, or email support@pawsby.app.", 'bad');
     }finally{
       $('wipe').disabled = false; $('wipe').textContent = label;
     }
