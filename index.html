@@ -35,10 +35,8 @@
   .dl-alt a:hover{color:var(--ink)}
   .platforms{font-family:var(--pixel);font-size:10px;letter-spacing:.06em;color:var(--slate);margin-top:14px}
 
-  /* The window is whatever you were already doing — deliberately dull, low
-     contrast, no app identity. It is scenery, not the product. The cat and
-     its bubble are the only things with ink-black edges. */
-  .stage{padding-top:150px}
+  /* the mock desktop window the cat patrols */
+  .stage{padding-top:74px}
   .perch{position:relative}
   .win{
     background:var(--card);border:1.5px solid var(--hair);border-radius:10px;
@@ -50,65 +48,45 @@
   }
   .dot{width:9px;height:9px;border-radius:50%;background:var(--hair-strong)}
   .win-title{font-family:var(--pixel);font-size:9px;letter-spacing:.05em;color:var(--slate);margin-left:6px}
-  .win-body{padding:18px 16px 20px}
-  /* <i> is inline — without display:block the height and width are ignored
-     and every line collapses to nothing. */
-  .ln{display:block;height:9px;border-radius:5px;background:var(--hair);margin-bottom:11px}
-  .ln.head{height:13px;width:34%;background:var(--hair-strong);margin-bottom:18px}
-  .ln.w95{width:95%}
-  .ln.w88{width:88%}
-  .ln.w72{width:72%}
-  .ln.w54{width:54%}
-  .ln.last{margin-bottom:0}
-
-  /* The cat and the answer travel together — that is the whole pitch, so it
-     is the one moving part on the page. Bubble is a sibling of the sprite so
-     the walk-cycle flip never mirrors the text. */
-  .walker{
-    /* The sprite frame carries transparent space under the paws, so the
-       negative margin has to eat that before the cat looks planted. */
-    position:absolute;left:2%;bottom:100%;margin-bottom:-14px;
-    display:flex;flex-direction:column;align-items:flex-start;gap:9px;
-    animation:patrol 16s linear infinite;
+  .win-body{padding:14px}
+  .bub{max-width:78%;padding:7px 11px;font-size:13.5px;line-height:1.45;border-radius:12px;margin-bottom:8px}
+  .bub-them{background:#EFF1F3;border:1px solid #DFE3E7;border-radius:12px 12px 12px 2px}
+  .bub-me{background:var(--eye);color:#fff;border-radius:12px 12px 2px 12px;margin-left:auto}
+  .fake-input{
+    display:flex;gap:8px;align-items:center;border-top:1px solid var(--hair);
+    margin:12px -14px -14px;padding:11px 14px;
   }
-  /* sheet frame 274x177 (ears included) shown at 105x68, 5 frames */
+  .fake-input span{
+    flex:1;font-size:13px;color:#A8AFB6;border:1.5px solid var(--hair);
+    border-radius:9px;padding:8px 11px;background:#FCFCFD;
+  }
+  .fake-send{width:32px;height:32px;border-radius:9px;background:var(--eye);flex:none}
+
+  /* patrolling cat — sheet frame 274x177 (ears included) shown at 105x68 */
   .cat{
     --cw:105px; --ch:68px; --cs:525px;
-    width:var(--cw);height:var(--ch);margin-left:6px;
+    position:absolute;bottom:100%;margin-bottom:-2px;
+    width:var(--cw);height:var(--ch);
     background:url('/sprites/russian_blue-walk.png') 0 0/var(--cs) 100% no-repeat;
     image-rendering:pixelated;
-    animation:paws .55s steps(5) infinite, face 16s steps(1) infinite;
+    animation:patrol 15s linear infinite, paws .55s steps(5) infinite;
     transform-origin:50% 50%;
   }
   @keyframes patrol{
-    0%   {left:2%}
-    46%  {left:44%}
-    50%  {left:44%}
-    96%  {left:2%}
-    100% {left:2%}
-  }
-  @keyframes face{
-    0%,49.99%   {transform:scaleX(1)}
-    50%,99.99%  {transform:scaleX(-1)}
-    100%        {transform:scaleX(1)}
+    0%   {left:4%;  transform:scaleX(1)}
+    44%  {left:66%; transform:scaleX(1)}
+    50%  {left:66%; transform:scaleX(-1)}
+    94%  {left:4%;  transform:scaleX(-1)}
+    100% {left:4%;  transform:scaleX(1)}
   }
   @keyframes paws{from{background-position:0 0}to{background-position:calc(-1 * var(--cs)) 0}}
 
   .stage-col{position:relative;display:flex;flex-direction:column}
-
-  /* The reply lands where the cat is standing. No title bar, no input field,
-     nothing to close — the bubble is the entire interface. */
   .say{
-    max-width:250px;
-    background:var(--card);border:1.5px solid var(--ink);
-    border-radius:12px 12px 12px 2px;
-    padding:9px 12px 10px;font-size:13.5px;line-height:1.45;
+    position:absolute;top:6px;right:0;max-width:230px;z-index:2;
+    background:var(--card);border:1.5px solid var(--ink);border-radius:12px 12px 2px 12px;
+    padding:8px 12px;font-size:13px;line-height:1.4;
     box-shadow:0 3px 0 var(--ink);
-  }
-  .say-q{
-    display:block;font-family:var(--pixel);font-size:9px;letter-spacing:.05em;
-    text-transform:uppercase;color:var(--slate);
-    padding-bottom:6px;margin-bottom:7px;border-bottom:1px solid var(--hair);
   }
 
   /* ── breeds ─────────────────────────────────────────── */
@@ -144,19 +122,26 @@
   @media (max-width:860px){
     .hero-grid{grid-template-columns:1fr;gap:34px}
     .road{grid-template-columns:1fr}
+
+    /* The cat is absolutely positioned against .stage and sits on the window's
+       top edge. Leaving .say in normal flow pushes the window down but not the
+       cat, stranding it in mid-air — so on narrow screens the bubble moves
+       above the stage entirely and the cat keeps its perch. */
+    .say{
+      position:static;
+      max-width:none;
+      margin:0 0 16px;
+      align-self:flex-start;
+    }
+    .stage{padding-top:70px}
   }
 
   @media (max-width:600px){
     .hero{padding-top:24px}
-    .stage{padding-top:142px}
-    .say{max-width:230px;font-size:13px;padding:8px 11px 9px}
-    .win-body{padding:16px 14px 18px}
-    .cat{--cw:92px;--ch:60px;--cs:460px}
-  }
-
-  /* A walking cat is charming; a walking cat you cannot switch off is not. */
-  @media (prefers-reduced-motion:reduce){
-    .walker,.cat{animation:none}
+    .say{font-size:13px;padding:7px 11px}
+    .win-body{padding:12px}
+    .fake-input{margin:12px -12px -12px;padding:11px 12px}
+    .bub{max-width:86%;font-size:13px}
   }
 </style>
 </head>
@@ -205,30 +190,27 @@
     </div>
 
     <div class="stage-col">
+      <div class="say">Stand-up in 10 minutes ☕</div>
       <div class="stage">
-        <div class="perch">
-          <div class="walker">
-            <div class="say">
-              <span class="say-q">is it going to rain today</span>
-              Showers from about 4pm, 18°C. Take the small umbrella 🌧
-            </div>
-            <div class="cat" aria-hidden="true"></div>
-          </div>
-          <div class="win" aria-hidden="true">
-            <div class="win-bar">
-              <i class="dot"></i><i class="dot"></i><i class="dot"></i>
-              <span class="win-title">whatever you were doing</span>
-            </div>
-            <div class="win-body">
-              <i class="ln head"></i>
-              <i class="ln w95"></i>
-              <i class="ln w88"></i>
-              <i class="ln w72"></i>
-              <i class="ln w95"></i>
-              <i class="ln w54 last"></i>
-            </div>
+      <div class="perch">
+      <div class="cat" aria-hidden="true"></div>
+      <div class="win">
+        <div class="win-bar">
+          <i class="dot"></i><i class="dot"></i><i class="dot"></i>
+          <span class="win-title">chunky</span>
+        </div>
+        <div class="win-body">
+          <div class="bub bub-me">is it going to rain today</div>
+          <div class="bub bub-them">Showers from about 4pm, 18°C. Take the small umbrella 🌧</div>
+          <div class="bub bub-me">what did we decide about pricing</div>
+          <div class="bub bub-them">$5 monthly, $50 yearly. You settled that on Tuesday.</div>
+          <div class="fake-input">
+            <span>Message Chunky…</span>
+            <i class="fake-send"></i>
           </div>
         </div>
+      </div>
+      </div>
       </div>
     </div>
   </div>
