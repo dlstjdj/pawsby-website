@@ -35,12 +35,6 @@
   .dl-alt a:hover{color:var(--ink)}
   .platforms{font-family:var(--pixel);font-size:10px;letter-spacing:.06em;color:var(--slate);margin-top:14px}
 
-  /* pre-launch: downloads and checkout are held until the live backend is cut over */
-  .btn-soon{
-    background:var(--hair);border-color:var(--hair);color:var(--slate);
-    box-shadow:none;cursor:default;pointer-events:none;
-  }
-
   /* the mock desktop window the cat patrols */
   .stage{padding-top:74px}
   .perch{position:relative}
@@ -161,7 +155,7 @@
       <a href="#pricing">Pricing</a>
       <a href="#faq">FAQ</a>
       <a href="#roadmap">Roadmap</a>
-      <a class="btn" style="padding:9px 16px;font-size:14px" href="#pricing">See plans</a>
+      <a class="btn" style="padding:9px 16px;font-size:14px" href="#get">Get Pawsby</a>
     </div>
   </nav>
 </div>
@@ -170,7 +164,7 @@
 <header class="wrap hero">
   <div class="hero-grid">
     <div>
-      <span class="eyebrow">Launching shortly · Windows &amp; macOS</span>
+      <span class="eyebrow">Free download · Windows &amp; macOS</span>
       <h1>Click the cat.<br>Get a <span class="accent">real answer.</span></h1>
       <p class="lead">
         A pixel cat sits on your desktop. Click it and you're talking to a proper
@@ -179,13 +173,18 @@
 
       <div class="dl" id="get">
         <div class="dl-row">
-          <span class="btn btn-dl btn-soon" aria-disabled="true">
-            Downloads open shortly
-            <small>Windows &amp; macOS</small>
-          </span>
+          <a class="btn btn-dl" id="dl-main" href="https://github.com/dlstjdj/pawsby-releases/releases/latest/download/Pawsby-windows_setup.exe">
+            Download for Windows
+            <small>Windows 10 &amp; 11 · 64-bit</small>
+          </a>
+          <a class="btn-ghost btn-dl" id="dl-other" href="https://github.com/dlstjdj/pawsby-releases/releases/latest/download/Pawsby-macos.dmg">
+            Download for macOS
+            <small>Apple silicon &amp; Intel</small>
+          </a>
         </div>
         <p class="dl-alt">
-          Free plan included, no account needed.
+          Free plan included, no account needed ·
+          <a href="https://github.com/dlstjdj/pawsby-releases/releases/latest">all versions</a>
         </p>
       </div>
     </div>
@@ -286,7 +285,7 @@
         <li>Pet commands</li>
         <li>Four breeds, light and dark</li>
       </ul>
-      <div class="cta"><span class="btn-ghost btn-block btn-soon" aria-disabled="true">Coming soon</span></div>
+      <div class="cta"><a class="btn-ghost btn-block" href="#get">Download</a></div>
     </div>
 
     <div class="card plan card-sel">
@@ -302,7 +301,7 @@
         <li>Sync <b>2 devices</b></li>
         <li>Use your own API key</li>
       </ul>
-      <div class="cta"><span class="btn btn-block btn-soon" aria-disabled="true">Coming soon</span></div>
+      <div class="cta"><a class="btn btn-block" href="/subscribe">Start 3 days free</a></div>
     </div>
 
     <div class="card plan">
@@ -317,7 +316,7 @@
         <li>Sync <b>every device</b></li>
         <li>Use your own API key</li>
       </ul>
-      <div class="cta"><span class="btn-ghost btn-block btn-soon" aria-disabled="true">Coming soon</span></div>
+      <div class="cta"><a class="btn-ghost btn-block" href="/subscribe">Start 3 days free</a></div>
     </div>
   </div>
 
@@ -396,6 +395,21 @@
 <script>
 (function(){
   'use strict';
+
+  /* ── download buttons: put the visitor's OS first ───── */
+  (function(){
+    const main  = document.getElementById('dl-main');
+    const other = document.getElementById('dl-other');
+    if(!main || !other) return;
+    const ua  = navigator.userAgent;
+    const mac = /Macintosh|Mac OS X/.test(ua) && !/like Mac/.test(ua); // excludes iOS UAs
+    if(mac){
+      // swap labels + hrefs so macOS becomes the solid primary button
+      const tmp = { html: main.innerHTML, href: main.getAttribute('href') };
+      main.innerHTML = other.innerHTML;  main.setAttribute('href', other.getAttribute('href'));
+      other.innerHTML = tmp.html;        other.setAttribute('href', tmp.href);
+    }
+  })();
 
   /* ── pricing toggle ─────────────────────────────────── */
   const P = {
