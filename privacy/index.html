@@ -27,9 +27,9 @@
 
   <div class="callout">
     <b>The short version.</b> Your conversations with your pet are stored on your own
-    computer in an encrypted database. We can't read them. If you turn on sync, they're
-    encrypted on your device before they leave it, and our server only ever holds
-    ciphertext it has no key for. We run no analytics and no telemetry.
+    computer in an encrypted database. If you turn on sync, they're encrypted on your
+    device before they leave it, and what reaches our server is ciphertext — never
+    readable message text. We run no analytics and no telemetry.
   </div>
 
   <div class="prose">
@@ -92,9 +92,12 @@
     </p>
     <p>
       Sync is off until you switch it on and accept a consent dialog. When it's on, each
-      row is encrypted with AES-256-GCM on your device before upload. The key is derived
-      from your account identifier and never sent to us, so what lands in the database is
-      ciphertext we cannot decrypt. You can erase all of it at any time from
+      row is encrypted with AES-256-GCM on your device before upload, so what lands in the
+      database is ciphertext rather than readable text. To be precise about the limits of
+      that: the encryption key is derived from your account identifier, which our server
+      also holds, so this protects your history in transit and against anyone who obtains
+      the stored rows alone — it is not a guarantee that we are technically unable to
+      decrypt it. You can erase all of it at any time from
       <b>Settings → Sync → Delete All Cloud Data</b>, which leaves your local copy intact.
     </p>
 
@@ -183,8 +186,8 @@
 
     <h2>10. Security, honestly stated</h2>
     <p>
-      Local storage is encrypted, sync is end-to-end encrypted, and all network traffic uses
-      HTTPS. Subscription status is signed by our server so it can't be forged on the client.
+      Local storage is encrypted, synced rows are encrypted on your device before upload,
+      and all network traffic uses HTTPS. Subscription status is signed by our server so it can't be forged on the client.
       That said, no system is perfect, and we won't pretend otherwise. If we ever discover a
       breach affecting your data we'll tell you and the relevant regulator as the law
       requires.
