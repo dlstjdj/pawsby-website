@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Help — Pawsby</title>
+<meta name="description" content="How to use Pawsby: talking to the cat, slash commands, every Settings tab, calendar, sync, your own API key, custom sprites and billing.">
+<meta property="og:title" content="Pawsby Help">
+<meta property="og:description" content="Everything the cat can do, and where every setting lives.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://pawsby.app/help">
+<meta property="og:image" content="https://pawsby.app/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Public+Sans:wght@400;500;600&family=Silkscreen&display=optional" rel="stylesheet">
+<link rel="stylesheet" href="/css/pawsby.css">
+<style>
+  /* page-local: the stylesheet has no kbd/code rules and the manual leans on both */
+  .prose kbd{
+    display:inline-block;font-family:var(--pixel);font-size:10px;letter-spacing:.04em;
+    padding:2px 7px 3px;border:1.5px solid var(--hair-strong);border-bottom-width:3px;
+    border-radius:6px;background:var(--card);color:var(--ink);vertical-align:middle;
+  }
+  .prose code{
+    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:13px;
+    padding:1px 6px;border-radius:5px;background:#EEF1F4;color:var(--ink);
+  }
+  .prose td code{white-space:nowrap}
+  .prose .plan{font-family:var(--pixel);font-size:9px;letter-spacing:.06em;text-transform:uppercase;
+    padding:2px 7px;border-radius:5px;background:var(--ink);color:#fff;vertical-align:middle;margin-left:4px}
+  .prose h2 .anchor{color:var(--hair-strong);text-decoration:none;margin-left:6px;font-weight:400}
+  .prose h2:hover .anchor{color:var(--slate)}
+  .toc ol{columns:2;column-gap:28px}
+  @media (max-width:560px){.toc ol{columns:1}}
+</style>
+</head>
+<body>
+
+<div class="wrap-narrow">
+  <nav class="nav">
+    <a class="brand" href="/"><img src="/favicon.png" alt="" width="23" height="23"><b>Pawsby</b></a>
+    <div class="nav-links"><a href="/#pricing">Pricing</a><a href="/#faq">FAQ</a><a href="mailto:support@pawsby.app">Support</a></div>
+  </nav>
+</div>
+
+<main class="wrap-narrow section-tight">
+  <span class="eyebrow">Help</span>
+  <h1 style="font-size:clamp(30px,5vw,42px)">How Pawsby works</h1>
+  <p class="lead">Everything the cat can do, and where every setting lives. Most of it works on the free plan — the parts that need a plan are marked.</p>
+
+  <div class="toc">
+    <span class="eyebrow">Contents</span>
+    <ol>
+      <li><a href="#basics">The cat</a></li>
+      <li><a href="#chat">Talking to it</a></li>
+      <li><a href="#commands">Slash commands</a></li>
+      <li><a href="#menu">Right-click and tray</a></li>
+      <li><a href="#settings">Settings</a></li>
+      <li><a href="#calendar">Calendar reminders</a></li>
+      <li><a href="#sync">Cloud sync</a></li>
+      <li><a href="#byok">Your own API key</a></li>
+      <li><a href="#sprites">Custom sprites</a></li>
+      <li><a href="#billing">Plans and billing</a></li>
+      <li><a href="#updates">Updates</a></li>
+      <li><a href="#trouble">If something's wrong</a></li>
+    </ol>
+  </div>
+
+  <div class="prose">
+
+    <h2 id="basics">1. The cat <a class="anchor" href="#basics">#</a></h2>
+    <p>Once you finish setup, the cat lands on the bottom of your screen and starts wandering. It walks the floor of the screen and, by default, along the top edges of your open windows.</p>
+    <table>
+      <tr><th>Do this</th><th>What happens</th></tr>
+      <tr><td><b>Click</b> once</td><td>You pet it. Mood goes up a little and it reacts.</td></tr>
+      <tr><td><b>Double-click</b></td><td>Opens the chat box. This is how you talk to it.</td></tr>
+      <tr><td><b>Drag</b></td><td>Picks the cat up. Let go over a window's top edge and it lands there; let go in mid-air and it falls to the floor.</td></tr>
+      <tr><td><b>Right-click</b></td><td>Opens the action menu — see <a href="#menu">§4</a>.</td></tr>
+      <tr><td>Leave it alone</td><td>It walks, sits, and occasionally says something on its own. Its mood drifts with how much you interact.</td></tr>
+    </table>
+    <p class="hint">The click / double-click split is deliberate: a single click is a pat, so you can nudge the cat without a chat box popping up every time.</p>
+
+    <h2 id="chat">2. Talking to it <a class="anchor" href="#chat">#</a></h2>
+    <p>Double-click the cat, type, press <kbd>Enter</kbd>. The reply appears in a speech bubble next to the cat and disappears after a few seconds (you set how long in <a href="#settings-chat">Settings → Chat</a>). Long replies split across pages — click the bubble's arrow for the next one.</p>
+    <p>On paid plans it can also search the web, so "will it rain tonight" or "who won last night" gets a current answer rather than a guess. Set your location in Settings → Chat so weather questions don't need a city every time.</p>
+    <p>The chat box comes in three styles (Settings → Chat → Chat Overlay Style):</p>
+    <ul>
+      <li><b>Bubble</b> — a compact input that closes as soon as you send. The default.</li>
+      <li><b>Classic</b> — a small chat window with your message history and quick-reply buttons.</li>
+      <li><b>Transparent</b> — frameless bubbles that stack upward and stay open.</li>
+    </ul>
+    <p>Each message is capped at 2,000 characters. The chat box closes when it loses focus.</p>
+
+    <h2 id="commands">3. Slash commands <a class="anchor" href="#commands">#</a></h2>
+    <p>Type any of these into the chat box and press <kbd>Enter</kbd>. They're handled locally, work on every plan, and don't use a chat from your daily count.</p>
+    <table>
+      <tr><th>Command</th><th>The cat…</th></tr>
+      <tr><td><code>/play</code></td><td>plays for a moment, then goes back to what it was doing</td></tr>
+      <tr><td><code>/sleep</code></td><td>curls up on a cushion and stays asleep until you pick it up or send another command</td></tr>
+      <tr><td><code>/eat</code></td><td>eats</td></tr>
+      <tr><td><code>/stretch</code></td><td>stretches</td></tr>
+      <tr><td><code>/bored</code></td><td>looks bored for a couple of seconds</td></tr>
+      <tr><td><code>/idle</code> or <code>/sit</code></td><td>stops and sits still</td></tr>
+    </table>
+    <p>Commands are case-insensitive. Anything else you type goes to the AI as normal.</p>
+
+    <h2 id="menu">4. Right-click and tray <a class="anchor" href="#menu">#</a></h2>
+    <p><b>Right-click the cat</b> for the same actions as the slash commands — Relax, Play, Sleep, Eat, Stretch, Bored — plus <b>Sit Still / Walk</b>, which toggles whether it wanders at all.</p>
+    <p><b>The tray icon</b> (Windows: bottom-right near the clock; macOS: top-right menu bar) has:</p>
+    <ul>
+      <li><b>Settings</b> — opens the settings window</li>
+      <li><b>Focus Mode</b> — sends the cat to a corner to sleep so it stays out of your way</li>
+      <li><b>Pause</b> — freezes it in place</li>
+      <li><b>Quit</b></li>
+    </ul>
+
+    <h2 id="settings">5. Settings <a class="anchor" href="#settings">#</a></h2>
+    <p>Open from the tray icon. Eight tabs. Most changes apply when you press <b>Save</b>; the AI Settings and Sync tabs apply immediately.</p>
+
+    <h3 id="settings-pet">Pet</h3>
+    <ul>
+      <li><b>Name</b> — what it's called. The AI uses this as its own name.</li>
+      <li><b>Appearance</b> — Russian Blue, Abyssinian, British Shorthair, Persian, plus any custom sprites you've imported (<a href="#sprites">§9</a>).</li>
+      <li><b>Personality</b> — Calm, Playful, Logical or Gentle. Sets the tone of every reply.</li>
+      <li><b>Advanced</b> — a free-text box added on top of the personality. "Always answer in one line", "you're a pirate", that sort of thing.</li>
+    </ul>
+
+    <h3 id="settings-chat">Chat</h3>
+    <ul>
+      <li><b>Your Name</b> — how the cat addresses you.</li>
+      <li><b>Chat Language</b> — Auto (matches whatever you type), or force English, 한국어, 日本語, 中文, Español, Français.</li>
+      <li><b>Your Location</b> — used for weather and local questions.</li>
+      <li><b>Bubble Duration</b> — how long a reply stays on screen, 3–30 seconds.</li>
+      <li><b>Chat Overlay Style</b> — Bubble / Classic / Transparent (<a href="#chat">§2</a>).</li>
+      <li><b>Quick Replies</b> — three one-tap messages shown in Classic style.</li>
+      <li><b>View / Export / Delete History</b> — your whole chat log, exportable as JSON or Markdown. Delete is permanent.</li>
+    </ul>
+
+    <h3 id="settings-ai">AI Settings</h3>
+    <ul>
+      <li><b>Current Plan</b> — your tier and a <b>Manage</b> button that opens your billing portal (<a href="#billing">§10</a>).</li>
+      <li><b>AI Mode</b> — use the app's built-in AI, or your own API key (<a href="#byok">§8</a>). Both need a paid plan.</li>
+      <li><b>Daily Usage</b> — how many chats you've used today.</li>
+    </ul>
+
+    <h3 id="settings-display">Display</h3>
+    <ul>
+      <li><b>Move Speed</b> — Off / Slow / Normal / Fast. Off means it stays put.</li>
+      <li><b>Pet Size</b> — 0.5× to 2.0×.</li>
+      <li><b>Focus Mode</b> — the same as the tray toggle, plus an optional <b>schedule</b> so it turns on by itself between two times each day.</li>
+      <li><b>Pet Can Walk On</b> — Floor and Windows, or Floor Only if you'd rather it never climbs on your windows.</li>
+    </ul>
+
+    <h3 id="settings-productivity">Productivity</h3>
+    <p>Calendar connection and alert timing — see <a href="#calendar">§6</a>.</p>
+
+    <h3 id="settings-sync">Sync</h3>
+    <p>Cloud sync between your devices — see <a href="#sync">§7</a>.</p>
+
+    <h3 id="settings-accessibility">Accessibility</h3>
+    <ul>
+      <li><b>Reduce Motion</b> — the cat stops walking and animates at a very low frame rate.</li>
+      <li><b>High Contrast</b> — black-and-white bubbles and chat box.</li>
+      <li><b>Font Size</b> — 10px to 20px for bubbles and chat.</li>
+    </ul>
+
+    <h3 id="settings-system">System</h3>
+    <ul>
+      <li><b>Launch at Login</b></li>
+      <li><b>App Language</b> — English, 한국어, 日本語. Changes the whole interface immediately. (Separate from Chat Language, which is what the cat replies in.)</li>
+      <li><b>Theme</b> — Light, Dark, or follow the system.</li>
+      <li><b>Updates</b> — automatic check on/off, and a Check Now button (<a href="#updates">§11</a>).</li>
+      <li><b>Version</b>, links to Privacy Policy, Terms of Service and Delete My Account.</li>
+    </ul>
+
+    <h2 id="calendar">6. Calendar reminders <span class="plan">Standard · Pro</span> <a class="anchor" href="#calendar">#</a></h2>
+    <p>Settings → Productivity → <b>Connect Google</b> or <b>Connect Outlook</b>. Your browser opens to sign in; when you're done it sends you back to the app.</p>
+    <p>Once connected, tick <b>Enable Calendar Alerts</b> and pick <b>Alert Before</b>: 5, 10, 15 or 30 minutes. Before each event the cat pops up a bubble with the event name, and — if you've allowed notifications — a system notification too.</p>
+    <p>The cat only sees your upcoming events. It never reads event bodies, attendees, or anything else. Disconnect any time from the same tab.</p>
+    <p class="hint">Windows: if alerts appear in the app but not as notifications, check Settings → System → Notifications → Pawsby is allowed. The app re-checks when you come back to it.</p>
+
+    <h2 id="sync">7. Cloud sync <span class="plan">Standard · Pro</span> <a class="anchor" href="#sync">#</a></h2>
+    <p>Off by default. Turn it on in Settings → Sync → <b>Enable Sync</b>; you'll see a short consent screen first. Then:</p>
+    <ul>
+      <li>Your chats and settings are encrypted <em>on your device</em> before upload. The server stores ciphertext it cannot read.</li>
+      <li>Give each device a <b>Device Name</b> so you can tell them apart.</li>
+      <li><b>Auto-sync</b> toggles for conversations and settings separately; or push a manual sync with the buttons.</li>
+      <li><b>Connected Devices</b> lists every device on your account with a Remove button. Standard syncs 2 devices; Pro has no limit.</li>
+      <li><b>Delete All Cloud Data</b> wipes the server copy. Your local history is untouched.</li>
+    </ul>
+    <p>Sync runs in the background while you work, and again right after your computer wakes from sleep.</p>
+
+    <h2 id="byok">8. Your own API key <span class="plan">Standard · Pro</span> <a class="anchor" href="#byok">#</a></h2>
+    <p>If you'd rather the cat talk to your own AI account, Settings → AI Settings → <b>Use My Own Key (BYOK)</b>.</p>
+    <ul>
+      <li><b>Provider</b> — OpenRouter, Anthropic, OpenAI or Groq.</li>
+      <li><b>API Key</b> — pasted once, encrypted and stored only on this device. It's sent straight to the provider you chose, never to our servers.</li>
+      <li><b>Model</b> — pre-filled with a sensible default per provider; change it if you like.</li>
+      <li><b>Test</b> confirms the key works before you save.</li>
+    </ul>
+    <p>In BYOK mode your daily chat count doesn't apply — you're paying the provider directly. Web search and calendar still work.</p>
+
+    <h2 id="sprites">9. Custom sprites <span class="plan">Standard · Pro</span> <a class="anchor" href="#sprites">#</a></h2>
+    <p>Settings → Pet → Appearance → <b>+</b> to import your own sprite sheet. Pawsby reads the <b>Codex pets</b> format as-is: an 8×9 grid of 192×208 cells, PNG or WebP. There's a growing library at <a href="https://codexpets.org">codexpets.org</a>; each sheet belongs to its creator, so check the usage terms where you download it.</p>
+    <p>Imported sprites show up next to the built-in breeds. Hover one to rename or delete it.</p>
+
+    <h2 id="billing">10. Plans and billing <a class="anchor" href="#billing">#</a></h2>
+    <table>
+      <tr><th></th><th>Free</th><th>Standard</th><th>Pro</th></tr>
+      <tr><td>AI chats per day</td><td>3</td><td>50</td><td>Unlimited</td></tr>
+      <tr><td>Model</td><td colspan="2">Fast, natural conversation</td><td>Smarter, follows long chats</td></tr>
+      <tr><td>Web search</td><td>—</td><td>✓</td><td>✓</td></tr>
+      <tr><td>Calendar reminders</td><td>—</td><td>✓</td><td>✓</td></tr>
+      <tr><td>Cloud sync</td><td>—</td><td>2 devices</td><td>Every device</td></tr>
+      <tr><td>Your own API key</td><td>—</td><td>✓</td><td>✓</td></tr>
+      <tr><td>Custom sprites</td><td>—</td><td>✓</td><td>✓</td></tr>
+      <tr><td>Walking, commands, four breeds</td><td>✓</td><td>✓</td><td>✓</td></tr>
+    </table>
+    <p>Prices are on the <a href="/#pricing">pricing page</a>. To subscribe: Settings → AI Settings → View Plans. Checkout is handled by Creem, our merchant of record; if you have a promo code, there's an <b>Add discount code</b> link on the checkout page under the subtotal.</p>
+    <p><b>Manage</b> (Settings → AI Settings) opens your billing portal, where you can see your next charge, change your card, switch between monthly and yearly, or cancel. Cancelling keeps your plan until the end of the period you've paid for, then drops to Free. Your chat history stays on your machine either way.</p>
+    <p><b>Moving to a new computer?</b> Install Pawsby, and on the "Welcome back?" step choose <b>I have a subscription</b>. Enter the email you paid with and the one-time code we send, and your plan follows you. If you turned sync on, you can bring your chats and settings across in the same step.</p>
+
+    <h2 id="updates">11. Updates <a class="anchor" href="#updates">#</a></h2>
+    <p>Pawsby checks for updates on its own (Settings → System to turn that off). When one is waiting, the cat says so in a bubble that stays until you dismiss it — <b>double-click the cat</b> to install and restart, or use the <b>Install Update</b> button in Settings → System.</p>
+
+    <h2 id="trouble">12. If something's wrong <a class="anchor" href="#trouble">#</a></h2>
+    <ul>
+      <li><b>Windows said the installer "isn't commonly downloaded"</b> — that's SmartScreen's reputation check, which every new app trips until enough people have installed it. The installer is signed by IT TEC. Click <em>More info → Run anyway</em>.</li>
+      <li><b>The cat is gone</b> — check the tray icon isn't paused, and Settings → Display → Move Speed isn't Off with the cat parked off-screen. Quitting from the tray and relaunching resets its position.</li>
+      <li><b>It stopped answering</b> — Settings → AI Settings shows your daily count. On Free that's 3; it resets at midnight UTC. If you're on a plan and it's the model being slow, it retries once automatically.</li>
+      <li><b>"Reconnect calendar"</b> — the sign-in expired. Settings → Productivity → Disconnect, then Connect again.</li>
+      <li><b>Sync says device limit reached</b> — Standard allows 2. Remove an old device under Connected Devices, or move to Pro.</li>
+      <li><b>Anything else</b> — <a href="mailto:support@pawsby.app">support@pawsby.app</a>. Say which OS you're on and roughly what you were doing; the app version is in Settings → System.</li>
+    </ul>
+
+  </div>
+</main>
+
+<footer class="foot">
+  <div class="wrap-narrow foot-row">
+    <span><a href="/">← Pawsby</a></span>
+    <span><a href="/privacy">Privacy</a> · <a href="/terms">Terms</a> · <a href="/delete-account">Delete account</a> · <a href="mailto:support@pawsby.app">support@pawsby.app</a></span>
+  </div>
+</footer>
+
+</body>
+</html>
