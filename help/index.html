@@ -119,66 +119,68 @@
     </ul>
 
     <h2 id="settings">5. Settings <a class="anchor" href="#settings">#</a></h2>
-    <p>Open from the tray icon. Eight tabs. Most changes apply when you press <b>Save</b>; the AI Settings and Sync tabs apply immediately.</p>
+    <p>Open from the tray icon. Six tabs. In Pet, Chat, Calendar and System, changes apply when you press <b>Save</b>; the Account and Sync tabs apply immediately.</p>
 
     <h3 id="settings-pet">Pet</h3>
+    <p><b>My Pet</b></p>
     <ul>
       <li><b>Name</b> — what it's called. The AI uses this as its own name.</li>
       <li><b>Appearance</b> — Russian Blue, Abyssinian, British Shorthair, Persian, plus any custom sprites you've imported (<a href="#sprites">§9</a>).</li>
       <li><b>Personality</b> — Calm, Playful, Logical or Gentle. Sets the tone of every reply.</li>
       <li><b>Advanced</b> — a free-text box added on top of the personality. "Always answer in one line", "you're a pirate", that sort of thing.</li>
     </ul>
-
-    <h3 id="settings-chat">Chat</h3>
-    <ul>
-      <li><b>Your Name</b> — how the cat addresses you.</li>
-      <li><b>Chat Language</b> — Auto (matches whatever you type), or force English, 한국어, 日本語, 中文, Español, Français.</li>
-      <li><b>Your Location</b> — used for weather and local questions.</li>
-      <li><b>Bubble Duration</b> — how long a reply stays on screen, 3–30 seconds.</li>
-      <li><b>Chat Overlay Style</b> — Bubble / Classic / Transparent (<a href="#chat">§2</a>).</li>
-      <li><b>Quick Replies</b> — three one-tap messages shown in Classic style.</li>
-      <li><b>View / Export / Delete History</b> — your whole chat log, exportable as JSON or Markdown. Delete is permanent.</li>
-    </ul>
-
-    <h3 id="settings-ai">AI Settings</h3>
-    <ul>
-      <li><b>Current Plan</b> — your tier and a <b>Manage</b> button that opens your billing portal (<a href="#billing">§10</a>).</li>
-      <li><b>AI Mode</b> — use the app's built-in AI, or your own API key (<a href="#byok">§8</a>). Both need a paid plan.</li>
-      <li><b>Daily Usage</b> — how many chats you've used today.</li>
-    </ul>
-
-    <h3 id="settings-display">Display</h3>
+    <p><b>Behavior</b></p>
     <ul>
       <li><b>Move Speed</b> — Off / Slow / Normal / Fast. Off means it stays put.</li>
-      <li><b>Pet Size</b> — 0.5× to 2.0×.</li>
+      <li><b>Pet Size</b> — 0.5× to 2.0×. Drag the slider and the cat resizes live.</li>
       <li><b>Focus Mode</b> — the same as the tray toggle, plus an optional <b>schedule</b> so it turns on by itself between two times each day.</li>
       <li><b>Pet Can Walk On</b> — Floor and Windows, or Floor Only if you'd rather it never climbs on your windows.</li>
     </ul>
 
-    <h3 id="settings-productivity">Productivity</h3>
-    <p>Calendar connection and alert timing — see <a href="#calendar">§6</a>.</p>
-
-    <h3 id="settings-sync">Sync</h3>
-    <p>Cloud sync between your devices — see <a href="#sync">§7</a>.</p>
-
-    <h3 id="settings-accessibility">Accessibility</h3>
+    <h3 id="settings-chat">Chat</h3>
+    <p><b>About you</b></p>
     <ul>
-      <li><b>Reduce Motion</b> — the cat stops walking and animates at a very low frame rate.</li>
+      <li><b>Your Name</b> — how the cat addresses you.</li>
+      <li><b>Your Location</b> — used for weather and local questions.</li>
+      <li><b>Chat Language</b> — Auto (matches whatever you type), or force English, 한국어, 日本語, 中文, Español, Français.</li>
+    </ul>
+    <p><b>Look</b></p>
+    <ul>
+      <li><b>Chat Overlay Style</b> — Bubble / Classic / Transparent (<a href="#chat">§2</a>).</li>
+      <li><b>Bubble Duration</b> — how long a reply stays on screen, 3–30 seconds.</li>
+      <li><b>Font Size</b> — 10px to 20px for bubbles and the chat box.</li>
       <li><b>High Contrast</b> — black-and-white bubbles and chat box.</li>
-      <li><b>Font Size</b> — 10px to 20px for bubbles and chat.</li>
+    </ul>
+    <p><b>Quick replies</b> — three one-tap messages shown in Classic style.</p>
+    <p><b>History</b> — view, export as JSON or Markdown, or delete your whole chat log. Delete is permanent.</p>
+
+    <h3 id="settings-account">Account</h3>
+    <ul>
+      <li><b>Plan</b> — your tier, a <b>View Plans</b> button on Free, and a <b>Manage</b> button on a paid plan that opens your billing portal (<a href="#billing">§10</a>). Also where you restore a subscription on a new computer.</li>
+      <li><b>AI</b> — use the app's built-in AI, or your own API key (<a href="#byok">§8</a>). Both need a paid plan.</li>
+      <li><b>Usage</b> — how many chats you've used today.</li>
+      <li><b>Danger zone</b> — Delete My Account. Only shown once you've had a subscription; there's nothing to delete on a never-subscribed Free install.</li>
     </ul>
 
+    <h3 id="settings-sync">Sync</h3>
+    <p>Cloud sync between your devices — see <a href="#sync">§7</a>. Grouped as <b>Sync</b> (on/off, status, auto-sync), <b>Devices</b>, and <b>Danger zone</b> (delete cloud data).</p>
+
+    <h3 id="settings-calendar">Calendar</h3>
+    <p>Connect Google or Outlook and set alert timing — see <a href="#calendar">§6</a>.</p>
+
     <h3 id="settings-system">System</h3>
+    <p><b>General</b></p>
     <ul>
       <li><b>Launch at Login</b></li>
       <li><b>App Language</b> — English, 한국어, 日本語. Changes the whole interface immediately. (Separate from Chat Language, which is what the cat replies in.)</li>
       <li><b>Theme</b> — Light, Dark, or follow the system.</li>
-      <li><b>Updates</b> — automatic check on/off, and a Check Now button (<a href="#updates">§11</a>).</li>
-      <li><b>Version</b>, links to Privacy Policy, Terms of Service and Delete My Account.</li>
+      <li><b>Reduce Motion</b> — the cat animates at a very low frame rate and creeps instead of walking, and skips the landing animation on launch.</li>
     </ul>
+    <p><b>Updates</b> — automatic check on/off, Check Now, and Install when one is waiting (<a href="#updates">§11</a>).</p>
+    <p><b>About</b> — version, and links to this guide, Privacy Policy and Terms of Service.</p>
 
     <h2 id="calendar">6. Calendar reminders <span class="plan">Standard · Pro</span> <a class="anchor" href="#calendar">#</a></h2>
-    <p>Settings → Productivity → <b>Connect Google</b> or <b>Connect Outlook</b>. Your browser opens to sign in; when you're done it sends you back to the app.</p>
+    <p>Settings → Calendar → <b>Connect Google</b> or <b>Connect Outlook</b>. Your browser opens to sign in; when you're done it sends you back to the app.</p>
     <p>Once connected, tick <b>Enable Calendar Alerts</b> and pick <b>Alert Before</b>: 5, 10, 15 or 30 minutes. Before each event the cat pops up a bubble with the event name, and — if you've allowed notifications — a system notification too.</p>
     <p>The cat only sees your upcoming events. It never reads event bodies, attendees, or anything else. Disconnect any time from the same tab.</p>
     <p class="hint">Windows: if alerts appear in the app but not as notifications, check Settings → System → Notifications → Pawsby is allowed. The app re-checks when you come back to it.</p>
@@ -195,7 +197,7 @@
     <p>Sync runs in the background while you work, and again right after your computer wakes from sleep.</p>
 
     <h2 id="byok">8. Your own API key <span class="plan">Standard · Pro</span> <a class="anchor" href="#byok">#</a></h2>
-    <p>If you'd rather the cat talk to your own AI account, Settings → AI Settings → <b>Use My Own Key (BYOK)</b>.</p>
+    <p>If you'd rather the cat talk to your own AI account, Settings → Account → AI → <b>Use My Own Key (BYOK)</b>.</p>
     <ul>
       <li><b>Provider</b> — OpenRouter, Anthropic, OpenAI or Groq.</li>
       <li><b>API Key</b> — pasted once, encrypted and stored only on this device. It's sent straight to the provider you chose, never to our servers.</li>
@@ -205,7 +207,7 @@
     <p>In BYOK mode your daily chat count doesn't apply — you're paying the provider directly. Web search and calendar still work.</p>
 
     <h2 id="sprites">9. Custom sprites <span class="plan">Standard · Pro</span> <a class="anchor" href="#sprites">#</a></h2>
-    <p>Settings → Pet → Appearance → <b>+</b> to import your own sprite sheet. Pawsby reads the <b>Codex pets</b> format as-is: an 8×9 grid of 192×208 cells, PNG or WebP. There's a growing library at <a href="https://codexpets.org">codexpets.org</a>; each sheet belongs to its creator, so check the usage terms where you download it.</p>
+    <p>Settings → Pet → Appearance → <b>+</b> to import your own sprite sheet. Pawsby reads the <b>Codex pets</b> format as-is — both the original 8×9 sheet (1536×1872) and the newer v2 8×11 sheet (1536×2288), 192×208 cells, PNG or WebP. Browse sheets at <a href="https://codexpets.org">codexpets.org</a> and <a href="https://codexpets.net">codexpets.net</a>; each sheet belongs to its creator, so check the usage terms where you download it.</p>
     <p>Imported sprites show up next to the built-in breeds. Hover one to rename or delete it.</p>
 
     <h2 id="billing">10. Plans and billing <a class="anchor" href="#billing">#</a></h2>
@@ -217,11 +219,11 @@
       <tr><td>Calendar reminders</td><td>—</td><td>✓</td><td>✓</td></tr>
       <tr><td>Cloud sync</td><td>—</td><td>2 devices</td><td>Every device</td></tr>
       <tr><td>Your own API key</td><td>—</td><td>✓</td><td>✓</td></tr>
-      <tr><td>Custom sprites</td><td>—</td><td>✓</td><td>✓</td></tr>
+      <tr><td>Custom sprites (Codex pet sheets)</td><td>—</td><td>✓</td><td>✓</td></tr>
       <tr><td>Walking, commands, four breeds</td><td>✓</td><td>✓</td><td>✓</td></tr>
     </table>
-    <p>Prices are on the <a href="/#pricing">pricing page</a>. To subscribe: Settings → AI Settings → View Plans. Checkout is handled by Creem, our merchant of record; if you have a promo code, there's an <b>Add discount code</b> link on the checkout page under the subtotal.</p>
-    <p><b>Manage</b> (Settings → AI Settings) opens your billing portal, where you can see your next charge, change your card, switch between monthly and yearly, or cancel. Cancelling keeps your plan until the end of the period you've paid for, then drops to Free. Your chat history stays on your machine either way.</p>
+    <p>Prices are on the <a href="/#pricing">pricing page</a>. To subscribe: Settings → Account → View Plans. Checkout is handled by Creem, our merchant of record; if you have a promo code, there's an <b>Add discount code</b> link on the checkout page under the subtotal. Checkout asks for a card even when the code makes the total $0 — that's the payment processor, not us; a 100% code means you're never charged.</p>
+    <p><b>Manage</b> (Settings → Account) opens your billing portal, where you can see your next charge, change your card, switch between monthly and yearly, or cancel. Cancelling keeps your plan until the end of the period you've paid for, then drops to Free. Your chat history stays on your machine either way.</p>
     <p><b>Moving to a new computer?</b> Install Pawsby, and on the "Welcome back?" step choose <b>I have a subscription</b>. Enter the email you paid with and the one-time code we send, and your plan follows you. If you turned sync on, you can bring your chats and settings across in the same step.</p>
 
     <h2 id="updates">11. Updates <a class="anchor" href="#updates">#</a></h2>
@@ -231,8 +233,8 @@
     <ul>
       <li><b>Windows said the installer "isn't commonly downloaded"</b> — that's SmartScreen's reputation check, which every new app trips until enough people have installed it. The installer is signed by IT TEC. Click <em>More info → Run anyway</em>.</li>
       <li><b>The cat is gone</b> — first check the tray icon: if it says <em>Pause</em> is on, turn it off. If it's still missing (this can happen after unplugging a monitor, because Pawsby remembers where the cat was), toggle <b>Focus Mode</b> on and off from the tray — entering Focus Mode moves the cat to a corner of the screen, which brings it back into view.</li>
-      <li><b>It stopped answering</b> — Settings → AI Settings shows your daily count. On Free that's 3; it resets at midnight UTC. If you're on a plan and it's the model being slow, it retries once automatically.</li>
-      <li><b>"Reconnect calendar"</b> — the sign-in expired. Settings → Productivity → Disconnect, then Connect again.</li>
+      <li><b>It stopped answering</b> — Settings → Account → Usage shows your daily count. On Free that's 3; it resets at midnight UTC. If you're on a plan and it's the model being slow, it retries once automatically.</li>
+      <li><b>"Reconnect calendar"</b> — the sign-in expired. Settings → Calendar → Disconnect, then Connect again.</li>
       <li><b>Sync says device limit reached</b> — Standard allows 2. Remove an old device under Connected Devices, or move to Pro.</li>
       <li><b>Anything else</b> — <a href="mailto:support@pawsby.app">support@pawsby.app</a>. Say which OS you're on and roughly what you were doing; the app version is in Settings → System.</li>
     </ul>
