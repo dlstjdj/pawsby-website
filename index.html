@@ -13,7 +13,9 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="/favicon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Public+Sans:wght@400;500;600&family=Silkscreen&display=optional" rel="stylesheet">
@@ -120,7 +122,9 @@
     .nav-links a[href="#features"],
     .nav-links a[href="#faq"],
     .nav-links a[href="#roadmap"]{display:none}
+    .nav-links .btn{white-space:nowrap}
   }
+  @media (max-width:360px){.nav-links a[href="/help"]{display:none}}
   @media (max-width:860px){
     .hero-grid{grid-template-columns:1fr;gap:34px}
     .road{grid-template-columns:1fr}
@@ -145,6 +149,8 @@
     .fake-input{margin:12px -12px -12px;padding:11px 12px}
     .bub{max-width:86%;font-size:13px}
   }
+  .card kbd{font-family:var(--pixel);font-size:9px;padding:1px 5px 2px;border:1.5px solid var(--hair-strong);
+    border-bottom-width:3px;border-radius:5px;background:var(--card);color:var(--ink);vertical-align:middle}
 </style>
 </head>
 <body>
@@ -157,6 +163,7 @@
       <a href="#pricing">Pricing</a>
       <a href="#faq">FAQ</a>
       <a href="#roadmap">Roadmap</a>
+      <a href="/help">Help</a>
       <a class="btn" style="padding:9px 16px;font-size:14px" href="#get">Get Pawsby</a>
     </div>
   </nav>
@@ -227,7 +234,7 @@
   <div class="grid g3" style="margin-top:30px">
     <div class="card">
       <h3>Ask without leaving anything</h3>
-      <p class="muted" style="margin:0;font-size:14px">Click the cat, type, done. Nothing to open and nothing to close — the reply appears right where the cat is standing.</p>
+      <p class="muted" style="margin:0;font-size:14px">Click the cat — or press <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Space</kbd> from any app — type, done. Nothing to open and nothing to close — the reply appears right where the cat is standing.</p>
     </div>
     <div class="card">
       <h3>It looks things up</h3>
@@ -239,7 +246,7 @@
     </div>
     <div class="card">
       <h3>Meeting nudges</h3>
-      <p class="muted" style="margin:0;font-size:14px">Connect Google or Outlook Calendar. Your cat warns you before a meeting instead of a system banner you'll swipe away.</p>
+      <p class="muted" style="margin:0;font-size:14px">Connect Google or Outlook Calendar. Your cat warns you before a meeting instead of a system banner you'll swipe away. On Pro, right-click the cat or type <code>/event</code> to add one.</p>
     </div>
     <div class="card">
       <h3>Your history stays yours</h3>
@@ -284,7 +291,8 @@
       <ul class="ticks dim">
         <li><b>3 AI chats</b> a day</li>
         <li>Walks, naps and reacts</li>
-        <li>Pet commands</li>
+        <li>Pet commands and alarms</li>
+        <li>Chat shortcut from any app</li>
         <li>Four breeds, light and dark</li>
       </ul>
       <div class="cta"><a class="btn-ghost btn-block" href="#get">Download</a></div>
@@ -316,6 +324,7 @@
         <li><b>Smarter</b> model, follows long chats</li>
         <li>Web search</li>
         <li>Calendar reminders</li>
+        <li><b>Add</b> calendar events</li>
         <li>Sync <b>every device</b></li>
         <li>Use your own API key</li>
         <li>Import <b>Codex pet</b> sprite sheets</li>
@@ -348,7 +357,8 @@
       <h3>Can it read my screen or files?</h3>
       <p class="muted" style="margin:0;font-size:14px">
         No. It sees what you type and, if you connect a calendar, your upcoming events.
-        Nothing else.
+        On Pro it can also add an event to that calendar when you ask — it never changes
+        or deletes the ones you have. Nothing else.
       </p>
     </div>
     <div class="card">
@@ -376,7 +386,7 @@
   <h2>What comes next</h2>
   <div class="road" style="margin-top:22px">
     <div><h3>Your own cat, from a photo</h3><p>Upload a picture of your real cat and get it back as a pixel companion.</p></div>
-    <div><h3>Calendar scheduling</h3><p>Move and create events by asking, not just hearing about them.</p></div>
+    <div><h3>Talk to your calendar</h3><p>Add or move events just by saying so in plain words. Adding from the menu or <code>/event</code> is already here on Pro.</p></div>
     <div><h3>Voice</h3><p>Talk out loud instead of typing.</p></div>
     <div><h3>Screen awareness</h3><p>The cat notices what you're working on and reacts to it.</p></div>
     <div><h3>Pet marketplace</h3><p>Browse looks and animations made by other people.</p></div>

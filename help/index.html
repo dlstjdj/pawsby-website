@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Help — Pawsby</title>
-<meta name="description" content="How to use Pawsby: talking to the cat, slash commands, every Settings tab, calendar, sync, your own API key, custom sprites and billing.">
+<meta name="description" content="How to use Pawsby: talking to the cat, the chat shortcut, slash commands, every Settings tab, calendar reminders and events, alarms, sync, your own API key, custom sprites and billing.">
 <meta property="og:title" content="Pawsby Help">
 <meta property="og:description" content="Everything the cat can do, and where every setting lives.">
 <meta property="og:type" content="website">
@@ -13,7 +13,9 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="/favicon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Public+Sans:wght@400;500;600&family=Silkscreen&display=optional" rel="stylesheet">
@@ -60,7 +62,7 @@
       <li><a href="#commands">Slash commands</a></li>
       <li><a href="#menu">Right-click and tray</a></li>
       <li><a href="#settings">Settings</a></li>
-      <li><a href="#calendar">Calendar reminders</a></li>
+      <li><a href="#calendar">Calendar</a></li>
       <li><a href="#sync">Cloud sync</a></li>
       <li><a href="#byok">Your own API key</a></li>
       <li><a href="#sprites">Custom sprites</a></li>
@@ -78,14 +80,16 @@
       <tr><th>Do this</th><th>What happens</th></tr>
       <tr><td><b>Click</b> once</td><td>You pet it. Mood goes up a little and it reacts.</td></tr>
       <tr><td><b>Double-click</b></td><td>Opens the chat box. This is how you talk to it.</td></tr>
+      <tr><td>Press <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Space</kbd><br><span class="muted">Mac: <kbd>⌥ Option</kbd>+<kbd>Space</kbd></span></td><td>Opens the chat box from anywhere, even while you're in another app. You can change or turn off the shortcut — see <a href="#shortcut">§2</a>.</td></tr>
       <tr><td><b>Drag</b></td><td>Picks the cat up. Let go over a window's top edge and it lands there; let go in mid-air and it falls to the floor.</td></tr>
       <tr><td><b>Right-click</b></td><td>Opens the action menu — see <a href="#menu">§4</a>.</td></tr>
       <tr><td>Leave it alone</td><td>It walks, sits, and occasionally says something on its own. Its mood drifts with how much you interact.</td></tr>
     </table>
     <p class="hint">The click / double-click split is deliberate: a single click is a pat, so you can nudge the cat without a chat box popping up every time.</p>
+    <p>The cat's birthday is the day you installed Pawsby. Once a year on that date it'll tell you, with a bubble and a notification.</p>
 
     <h2 id="chat">2. Talking to it <a class="anchor" href="#chat">#</a></h2>
-    <p>Double-click the cat, type, press <kbd>Enter</kbd>. The reply appears in a speech bubble next to the cat and disappears after a few seconds (you set how long in <a href="#settings-chat">Settings → Chat</a>). Long replies split across pages — click the bubble's arrow for the next one.</p>
+    <p>Double-click the cat (or use the chat shortcut below), type, press <kbd>Enter</kbd>. The reply appears in a speech bubble next to the cat and disappears after a few seconds (you set how long in <a href="#settings-chat">Settings → Chat</a>). Long replies split across pages — click the bubble's arrow for the next one.</p>
     <p>On paid plans it can also search the web, so "will it rain tonight" or "who won last night" gets a current answer rather than a guess. Set your location in Settings → Chat so weather questions don't need a city every time.</p>
     <p>The chat box comes in three styles (Settings → Chat → Chat Overlay Style):</p>
     <ul>
@@ -94,6 +98,15 @@
       <li><b>Transparent</b> — frameless bubbles that stack upward and stay open.</li>
     </ul>
     <p>Each message is capped at 2,000 characters. The chat box closes when it loses focus.</p>
+
+    <h3 id="shortcut">Chat shortcut</h3>
+    <p>A keyboard shortcut opens the chat box from anywhere — no need to find the cat first. It works on every plan.</p>
+    <ul>
+      <li><b>Default</b> — <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Space</kbd> on Windows, <kbd>⌥ Option</kbd>+<kbd>Space</kbd> on macOS.</li>
+      <li><b>Change it</b> in Settings → Chat → <b>Chat Shortcut</b> → <b>Change</b>, then press the combination you want. It has to include <kbd>Ctrl</kbd>, <kbd>Alt</kbd>/<kbd>⌥</kbd>, or <kbd>⌘</kbd>/<kbd>Win</kbd>. Press <kbd>Esc</kbd> to cancel and keep the one you had.</li>
+      <li><b>Reset</b> goes back to the default; <b>Off</b> disables it.</li>
+    </ul>
+    <p class="hint">If another app already uses the combination you pick, Pawsby says so and keeps your previous shortcut. The shortcut is set per computer and isn't synced.</p>
 
     <h2 id="commands">3. Slash commands <a class="anchor" href="#commands">#</a></h2>
     <p>Type any of these into the chat box and press <kbd>Enter</kbd>. They're handled locally, work on every plan, and don't use a chat from your daily count.</p>
@@ -108,8 +121,23 @@
     </table>
     <p>Commands are case-insensitive. Anything else you type goes to the AI as normal.</p>
 
+    <h3 id="alarm">Alarms</h3>
+    <p>A quick timer, handled on your computer. Works on every plan and doesn't use a chat.</p>
+    <table>
+      <tr><th>Type</th><th>What happens</th></tr>
+      <tr><td><code>/alarm 10m</code></td><td>Alarm in 10 minutes. A plain number means minutes, so <code>/alarm 90</code> is 90 minutes.</td></tr>
+      <tr><td><code>/alarm 1h30m tea</code></td><td>Units chain together, and anything after the time becomes the label the cat shows when it goes off.</td></tr>
+      <tr><td><code>/alarm cancel</code></td><td>Cancels every pending alarm. <code>off</code> and <code>stop</code> work too.</td></tr>
+    </table>
+    <p>Units: <code>s</code>, <code>m</code>, <code>h</code> (or <code>sec</code>/<code>min</code>/<code>hr</code>), and <code>초 분 시간</code> / <code>秒 分 時間</code>. Anywhere from 5 seconds to 24 hours. <code>/timer</code> is the same command. When it goes off, the cat shows a bubble that stays until you dismiss it, plus a system notification if you've allowed them.</p>
+    <p class="hint">Alarms live in memory — quitting or restarting Pawsby clears them.</p>
+
+    <h3 id="event-command">Adding a calendar event <span class="plan">Pro</span></h3>
+    <p><code>/event 2026-10-15 14:00 Dentist</code> adds a one-hour event to your connected calendar. Details in <a href="#calendar-add">§6</a>.</p>
+
     <h2 id="menu">4. Right-click and tray <a class="anchor" href="#menu">#</a></h2>
     <p><b>Right-click the cat</b> for the same actions as the slash commands — Relax, Play, Sleep, Eat, Stretch, Bored — plus <b>Sit Still / Walk</b>, which toggles whether it wanders at all.</p>
+    <p>When a calendar is connected, the menu also starts with <b>Add calendar event</b>, which opens a small form (<a href="#calendar-add">§6</a>).</p>
     <p><b>The tray icon</b> (Windows: bottom-right near the clock; macOS: top-right menu bar) has:</p>
     <ul>
       <li><b>Settings</b> — opens the settings window</li>
@@ -147,6 +175,7 @@
     <p><b>Look</b></p>
     <ul>
       <li><b>Chat Overlay Style</b> — Bubble / Classic / Transparent (<a href="#chat">§2</a>).</li>
+      <li><b>Chat Shortcut</b> — the key combination that opens chat from anywhere (<a href="#shortcut">§2</a>).</li>
       <li><b>Bubble Duration</b> — how long a reply stays on screen, 3–30 seconds.</li>
       <li><b>Font Size</b> — 10px to 20px for bubbles and the chat box.</li>
       <li><b>High Contrast</b> — black-and-white bubbles and chat box.</li>
@@ -156,9 +185,10 @@
 
     <h3 id="settings-account">Account</h3>
     <ul>
-      <li><b>Plan</b> — your tier, a <b>View Plans</b> button on Free, and a <b>Manage</b> button on a paid plan that opens your billing portal (<a href="#billing">§10</a>). Also where you restore a subscription on a new computer.</li>
+      <li><b>Plan</b> — your tier, a <b>View Plans</b> button on Free, and a <b>Manage</b> button on a paid plan that opens your billing portal (<a href="#billing">§10</a>). On a paid plan you may also see <b>Upgrade to Pro</b> or <b>Switch to yearly</b>. Also where you restore a subscription on a new computer.</li>
       <li><b>AI</b> — use the app's built-in AI, or your own API key (<a href="#byok">§8</a>). Both need a paid plan.</li>
-      <li><b>Usage</b> — how many chats you've used today.</li>
+      <li><b>Usage</b> — how many chats you've used today, and when the count resets. If you have bonus chats, they show as <em>(+N bonus)</em>; they never expire and are only used once the daily limit runs out.</li>
+      <li><b>Sign out</b> — stops this computer using your subscription. The subscription itself keeps billing (cancel it with Manage), sync turns off here, and any saved API key is removed from this computer. Your chats, pet and calendar connections stay. Restore with the same email to reconnect.</li>
       <li><b>Danger zone</b> — Delete My Account. Only shown once you've had a subscription; there's nothing to delete on a never-subscribed Free install.</li>
     </ul>
 
@@ -166,7 +196,8 @@
     <p>Cloud sync between your devices — see <a href="#sync">§7</a>. Grouped as <b>Sync</b> (on/off, status, auto-sync), <b>Devices</b>, and <b>Danger zone</b> (delete cloud data).</p>
 
     <h3 id="settings-calendar">Calendar</h3>
-    <p>Connect Google or Outlook and set alert timing — see <a href="#calendar">§6</a>.</p>
+    <p><b>Accounts</b> — connect or disconnect Google and Outlook. With both connected, <b>Add Events To</b> picks which one new events go to (Pro).</p>
+    <p><b>Alerts</b> — Enable Calendar Reminders, Alert Before Event, and Also Alert At Start Time. See <a href="#calendar">§6</a>.</p>
 
     <h3 id="settings-system">System</h3>
     <p><b>General</b></p>
@@ -179,10 +210,24 @@
     <p><b>Updates</b> — automatic check on/off, Check Now, and Install when one is waiting (<a href="#updates">§11</a>).</p>
     <p><b>About</b> — version, and links to this guide, Privacy Policy and Terms of Service.</p>
 
-    <h2 id="calendar">6. Calendar reminders <span class="plan">Standard · Pro</span> <a class="anchor" href="#calendar">#</a></h2>
-    <p>Settings → Calendar → <b>Connect Google</b> or <b>Connect Outlook</b>. Your browser opens to sign in; when you're done it sends you back to the app.</p>
-    <p>Once connected, tick <b>Enable Calendar Alerts</b> and pick <b>Alert Before</b>: 5, 10, 15 or 30 minutes. Before each event the cat pops up a bubble with the event name, and — if you've allowed notifications — a system notification too.</p>
-    <p>The cat only sees your upcoming events. It never reads event bodies, attendees, or anything else. Disconnect any time from the same tab.</p>
+    <h2 id="calendar">6. Calendar <span class="plan">Standard · Pro</span> <a class="anchor" href="#calendar">#</a></h2>
+    <p>Settings → Calendar → <b>Connect Google Calendar</b> or <b>Connect Outlook Calendar</b>. Your browser opens to sign in; when you're done it sends you back to the app. You can connect both.</p>
+
+    <h3 id="calendar-reminders">Reminders</h3>
+    <p>Once connected, turn on <b>Enable Calendar Reminders</b> and pick <b>Alert Before Event</b>: 5, 10, 15 or 30 minutes. Before each event the cat pops up a bubble with the event name, and — if you've allowed notifications — a system notification too. Turn on <b>Also Alert At Start Time</b> for a second reminder the moment it begins.</p>
+    <p>The cat reads the titles and start times of upcoming events on your main (primary) calendar. It never reads event bodies, attendees, or other calendars.</p>
+
+    <h3 id="calendar-add">Adding events <span class="plan">Pro</span></h3>
+    <p>Two ways, both on Pro:</p>
+    <ul>
+      <li><b>Right-click the cat → Add calendar event.</b> Fill in the title, date, time and duration (15, 30, 60 or 120 minutes; 60 by default), then <b>Add</b>.</li>
+      <li><b>Type it:</b> <code>/event 2026-10-15 14:00 Dentist</code>. The date is <code>YYYY-MM-DD</code>, the time is 24-hour <code>HH:MM</code> in your local time, and everything after is the title. Events added this way are always one hour.</li>
+    </ul>
+    <p>The cat confirms with a bubble, and the event shows up in Google Calendar or Outlook like any other. The next reminder check picks it up too. The date and time must be in the future.</p>
+    <p><b>Both calendars connected?</b> Events go to the one chosen in Settings → Calendar → <b>Add Events To</b>. To pick for a single event, choose it in the form, or put <code>google</code> or <code>outlook</code> first: <code>/event outlook 2026-10-15 14:00 Dentist</code>.</p>
+    <p class="hint">Pawsby only adds the events you ask for, and only to your primary calendar. It never changes or deletes events you already have. The Google and Microsoft sign-in screens describe the permission more broadly than that, because neither offers an add-only option.</p>
+
+    <p>Disconnect any time from Settings → Calendar; that deletes the stored sign-in from your computer.</p>
     <p class="hint">Windows: if alerts appear in the app but not as notifications, check Settings → System → Notifications → Pawsby is allowed. The app re-checks when you come back to it.</p>
 
     <h2 id="sync">7. Cloud sync <span class="plan">Standard · Pro</span> <a class="anchor" href="#sync">#</a></h2>
@@ -195,6 +240,7 @@
       <li><b>Delete All Cloud Data</b> wipes the server copy. Your local history is untouched.</li>
     </ul>
     <p>Sync runs in the background while you work, and again right after your computer wakes from sleep.</p>
+    <p class="hint">Calendar connections, API keys and custom sprites stay on the computer they were set up on and are never synced.</p>
 
     <h2 id="byok">8. Your own API key <span class="plan">Standard · Pro</span> <a class="anchor" href="#byok">#</a></h2>
     <p>If you'd rather the cat talk to your own AI account, Settings → Account → AI → <b>Use My Own Key (BYOK)</b>.</p>
@@ -217,13 +263,15 @@
       <tr><td>Model</td><td colspan="2">Fast, natural conversation</td><td>Smarter, follows long chats</td></tr>
       <tr><td>Web search</td><td>—</td><td>✓</td><td>✓</td></tr>
       <tr><td>Calendar reminders</td><td>—</td><td>✓</td><td>✓</td></tr>
+      <tr><td>Add calendar events</td><td>—</td><td>—</td><td>✓</td></tr>
       <tr><td>Cloud sync</td><td>—</td><td>2 devices</td><td>Every device</td></tr>
       <tr><td>Your own API key</td><td>—</td><td>✓</td><td>✓</td></tr>
       <tr><td>Custom sprites (Codex pet sheets)</td><td>—</td><td>✓</td><td>✓</td></tr>
-      <tr><td>Walking, commands, four breeds</td><td>✓</td><td>✓</td><td>✓</td></tr>
+      <tr><td>Walking, commands, alarms, chat shortcut, four breeds</td><td>✓</td><td>✓</td><td>✓</td></tr>
     </table>
     <p>Prices are on the <a href="/#pricing">pricing page</a>. To subscribe: Settings → Account → View Plans. Checkout is handled by Creem, our merchant of record; if you have a promo code, there's an <b>Add discount code</b> link on the checkout page under the subtotal. Checkout asks for a card even when the code makes the total $0 — that's the payment processor, not us; a 100% code means you're never charged.</p>
     <p><b>Manage</b> (Settings → Account) opens your billing portal, where you can see your next charge, change your card, switch between monthly and yearly, or cancel. Cancelling keeps your plan until the end of the period you've paid for, then drops to Free. Your chat history stays on your machine either way.</p>
+    <p><b>Upgrading.</b> On a paid plan, Settings → Account can show <b>Upgrade to Pro</b> and <b>Switch to yearly</b>. You'll see the new price before confirming; today's charge is prorated for the rest of your current period, and your plan updates within a few minutes. To go down a plan or cancel, use Manage.</p>
     <p><b>Moving to a new computer?</b> Install Pawsby, and on the "Welcome back?" step choose <b>I have a subscription</b>. Enter the email you paid with and the one-time code we send, and your plan follows you. If you turned sync on, you can bring your chats and settings across in the same step.</p>
 
     <h2 id="updates">11. Updates <a class="anchor" href="#updates">#</a></h2>
@@ -234,7 +282,10 @@
       <li><b>Windows said the installer "isn't commonly downloaded"</b> — that's SmartScreen's reputation check, which every new app trips until enough people have installed it. The installer is signed by IT TEC. Click <em>More info → Run anyway</em>.</li>
       <li><b>The cat is gone</b> — first check the tray icon: if it says <em>Pause</em> is on, turn it off. If it's still missing (this can happen after unplugging a monitor, because Pawsby remembers where the cat was), toggle <b>Focus Mode</b> on and off from the tray — entering Focus Mode moves the cat to a corner of the screen, which brings it back into view.</li>
       <li><b>It stopped answering</b> — Settings → Account → Usage shows your daily count. On Free that's 3; it resets at midnight UTC. If you're on a plan and it's the model being slow, it retries once automatically.</li>
-      <li><b>"Reconnect calendar"</b> — the sign-in expired. Settings → Calendar → Disconnect, then Connect again.</li>
+      <li><b>"Reconnect Google Calendar" / "Reconnect Outlook Calendar"</b> — Settings → Calendar → Disconnect, then Connect again. You'll see this when the sign-in has expired, or when you try to add an event with a connection made before adding events existed — reconnecting grants the new permission.</li>
+      <li><b>Outlook stopped working after an update</b> — Pawsby's Microsoft sign-in was moved to our verified business account, so Outlook connections made before that need to be connected again once. Disconnect and Connect in Settings → Calendar.</li>
+      <li><b>"Adding events requires a Pro subscription"</b> — reminders work on Standard; adding events is Pro only.</li>
+      <li><b>The chat shortcut does nothing</b> — another app may have grabbed the same combination. Pick a different one in Settings → Chat → Chat Shortcut.</li>
       <li><b>Sync says device limit reached</b> — Standard allows 2. Remove an old device under Connected Devices, or move to Pro.</li>
       <li><b>Anything else</b> — <a href="mailto:support@pawsby.app">support@pawsby.app</a>. Say which OS you're on and roughly what you were doing; the app version is in Settings → System.</li>
     </ul>
